@@ -1,0 +1,135 @@
+/* ============================================================
+   Overview.css — Dashboard / Overview page styles
+   ============================================================ */
+
+.overview-page {
+  padding: 2rem 2rem 3rem;
+}
+
+.overview-page h1 {
+  font-size: 1.6rem;
+  margin-bottom: 0.3rem;
+}
+
+.overview-subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.8rem;
+}
+
+/* ---- Stats strip ---- */
+.stats-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 1.1rem 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-left: 5px solid transparent;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.15s;
+}
+
+.stat-card:hover {
+  box-shadow: var(--shadow);
+}
+
+.stat-card.teal    { border-left-color: var(--primary); }
+.stat-card.emerald { border-left-color: var(--success); }
+.stat-card.amber   { border-left-color: var(--warning); }
+.stat-card.blue    { border-left-color: var(--info); }
+
+.stat-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.stat-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.stat-value {
+  font-size: 1.7rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+
+.stat-title {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ---- Two-column lower section ---- */
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 1.4rem;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .overview-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.section-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary-light);
+  color: var(--text);
+}
+
+/* ---- Course avg table ---- */
+.course-table-wrap {
+  overflow-x: auto;
+}
+
+.avg-table {
+  width: 100%;
+  font-size: 0.88rem;
+  border-collapse: collapse;
+}
+
+.avg-table th {
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--primary-xlight);
+}
+
+.avg-table td {
+  padding: 0.6rem 0.8rem;
+  border-top: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.avg-table tbody tr:nth-child(even) { background: #f8fffe; }
+.avg-table tbody tr:hover { background: var(--primary-light); }
+
+/* ---- Recent entries list ---- */
+.recent-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

@@ -1,0 +1,72 @@
+/* ============================
+   Status Chips
+   ============================ */
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.chip-open {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.chip-inprogress {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.chip-resolved {
+  background: #d1fae5;
+  color: #047857;
+}
+
+.chip-rejected {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* ============================
+   Priority Flags
+   ============================ */
+.priority-flag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  border-left: 3px solid transparent;
+}
+
+.flag-low {
+  background: #f1f5f9;
+  color: #64748b;
+  border-left-color: #94a3b8;
+}
+
+.flag-medium {
+  background: #dbeafe;
+  color: #1d4ed8;
+  border-left-color: #2563eb;
+}
+
+.flag-high {
+  background: #fff7ed;
+  color: #c2410c;
+  border-left-color: #ea580c;
+}
+
+.flag-critical {
+  background: #fee2e2;
+  color: #b91c1c;
+  border-left-color: #dc2626;
+}

@@ -1,0 +1,160 @@
+.rr-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.rr-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.rr-heading {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.rr-sub {
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.rr-form-card {
+  max-width: 740px;
+}
+
+.rr-form-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--bg);
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.rr-form {
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.rr-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.required {
+  color: var(--danger);
+}
+
+.form-hint {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* Priority radio group */
+.priority-radio-group {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.priority-radio {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 2px solid var(--border);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  color: var(--muted);
+  background: #fff;
+}
+
+.priority-radio:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.priority-radio--active.priority-radio--low {
+  border-color: #94a3b8;
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.priority-radio--active.priority-radio--medium {
+  border-color: #2563eb;
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.priority-radio--active.priority-radio--high {
+  border-color: #ea580c;
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.priority-radio--active.priority-radio--critical {
+  border-color: #dc2626;
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* Form actions */
+.rr-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border);
+}
+
+/* Success card */
+.rr-success-card {
+  max-width: 480px;
+  margin: 40px auto;
+  padding: 48px 36px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.rr-success-icon {
+  color: var(--success);
+}
+
+.rr-success-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.rr-success-text {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.rr-success-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+@media (max-width: 600px) {
+  .rr-form-row {
+    grid-template-columns: 1fr;
+  }
+}

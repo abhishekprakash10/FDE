@@ -1,0 +1,37 @@
+/* ============================================================
+   ScoreMeter.css — Dot-based score display
+   ============================================================ */
+
+.score-meter {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.score-dots {
+  display: flex;
+  gap: 3px;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+.score-dot-filled {
+  color: var(--primary);
+}
+
+.score-dot-empty {
+  color: var(--border);
+}
+
+.score-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.score-fraction {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-right: 4px;
+}

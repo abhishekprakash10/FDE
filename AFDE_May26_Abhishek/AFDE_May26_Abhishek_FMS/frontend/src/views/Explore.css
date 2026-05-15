@@ -1,0 +1,58 @@
+/* ============================================================
+   Explore.css — Search & Filter page
+   ============================================================ */
+
+.explore-page {
+  padding: 2rem 2rem 3rem;
+}
+
+.explore-page h1 {
+  font-size: 1.6rem;
+  margin-bottom: 0.3rem;
+}
+
+.explore-subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.8rem;
+}
+
+.explore-filters {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.explore-filters-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  gap: 1rem;
+  align-items: end;
+}
+
+@media (max-width: 700px) {
+  .explore-filters-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.explore-filter-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.explore-results-info {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.explore-results-info strong {
+  color: var(--text);
+}

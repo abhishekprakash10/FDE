@@ -1,0 +1,230 @@
+.cc-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cc-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.cc-heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.cc-subheading {
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* Stats */
+.cc-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.stat-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.stat-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  border-radius: var(--radius) 0 0 var(--radius);
+}
+
+.stat-box:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.stat-total::before { background: var(--primary); }
+.stat-open::before { background: var(--info); }
+.stat-inprogress::before { background: var(--accent); }
+.stat-resolved::before { background: var(--success); }
+
+.stat-icon {
+  color: var(--muted);
+  opacity: 0.5;
+  margin-bottom: 4px;
+}
+
+.stat-total .stat-icon { color: var(--primary); opacity: 0.7; }
+.stat-open .stat-icon { color: var(--info); opacity: 0.7; }
+.stat-inprogress .stat-icon { color: var(--accent); opacity: 0.8; }
+.stat-resolved .stat-icon { color: var(--success); opacity: 0.7; }
+
+.stat-count {
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--text);
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Lower section */
+.cc-lower {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 16px;
+  align-items: start;
+}
+
+.cc-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.cc-section-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* Recent list */
+.cc-recent-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.cc-recent-row {
+  display: grid;
+  grid-template-columns: 52px 1fr 1fr 80px 100px;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.cc-recent-row:last-child {
+  border-bottom: none;
+}
+
+.cc-recent-row:hover {
+  background: var(--bg);
+}
+
+.cc-recent-id {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary);
+  font-family: monospace;
+}
+
+.cc-recent-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cc-recent-cat {
+  font-size: 0.78rem;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Category breakdown */
+.cc-cat-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 16px 16px;
+}
+
+.cc-cat-row {
+  display: grid;
+  grid-template-columns: 24px 1fr 100px 32px;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 0;
+}
+
+.cc-cat-icon {
+  font-size: 1rem;
+}
+
+.cc-cat-name {
+  font-size: 0.82rem;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cc-cat-bar-wrap {
+  height: 6px;
+  background: var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.cc-cat-bar {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 10px;
+  transition: width 0.5s ease;
+  min-width: 4px;
+}
+
+.cc-cat-count {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-align: right;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .cc-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cc-lower {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .cc-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}

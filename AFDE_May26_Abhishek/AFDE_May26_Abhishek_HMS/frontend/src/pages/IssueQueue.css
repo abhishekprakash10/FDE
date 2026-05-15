@@ -1,0 +1,129 @@
+.iq-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.iq-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.iq-heading {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.iq-sub {
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* Table */
+.iq-table-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius);
+}
+
+.iq-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.iq-table thead tr {
+  background: var(--bg);
+  border-bottom: 2px solid var(--border);
+}
+
+.iq-table th {
+  padding: 11px 14px;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.iq-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.iq-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.iq-table tbody tr:hover {
+  background: #fafafa;
+}
+
+.iq-id {
+  font-weight: 700;
+  color: var(--primary);
+  font-family: monospace;
+  font-size: 0.82rem;
+}
+
+.iq-name {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.iq-dept,
+.iq-cat {
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.iq-date {
+  color: var(--muted);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.iq-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.iq-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: #fff;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+  color: var(--muted);
+}
+
+.iq-action-btn:hover {
+  border-color: transparent;
+}
+
+.iq-view:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.iq-edit:hover {
+  background: var(--accent-light);
+  color: var(--accent-hover);
+}
+
+.iq-delete:hover {
+  background: var(--danger-light);
+  color: var(--danger);
+}

@@ -1,0 +1,2216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PulseCheck — Feedback Collection Portal | Documentation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+      line-height: 1.6;
+    }
+
+    .doc-wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      background: #ffffff;
+      box-shadow: 0 0 40px rgba(0,0,0,0.08);
+    }
+
+    /* ===== COVER ===== */
+    .cover {
+      background: linear-gradient(135deg, #0d9488 0%, #0f766e 60%, #134e4a 100%);
+      color: white;
+      padding: 72px 60px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+    }
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -60px;
+      width: 240px; height: 240px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+    .cover-logo {
+      font-size: 64px;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .cover-title {
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+    }
+    .cover-subtitle {
+      font-size: 18px;
+      font-weight: 400;
+      opacity: 0.85;
+      margin-bottom: 36px;
+    }
+    .cover-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .cover-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .cover-meta-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.65;
+    }
+    .cover-meta-value {
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .cover-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      margin-top: 24px;
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .doc-content {
+      padding: 0 60px 80px;
+    }
+
+    /* ===== TOC ===== */
+    .toc-section {
+      padding: 48px 0 32px;
+      border-bottom: 2px solid #f1f5f9;
+      margin-bottom: 48px;
+    }
+    .toc-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #64748b;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .toc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 32px;
+    }
+    .toc-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      text-decoration: none;
+      color: #0d9488;
+      font-size: 14px;
+      font-weight: 500;
+      border-bottom: 1px solid #f1f5f9;
+      transition: color 0.15s;
+    }
+    .toc-link:hover { color: #0f766e; }
+    .toc-num {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: #f0fdfa;
+      border: 1px solid #ccfbf1;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px;
+      color: #0d9488;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ===== SECTION HEADINGS ===== */
+    .doc-section {
+      margin-bottom: 64px;
+    }
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+    .section-num {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      background: #0d9488;
+      color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .section-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+    }
+    .section-tag {
+      display: inline-block;
+      background: #f0fdfa;
+      color: #0d9488;
+      border: 1px solid #ccfbf1;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+    .section-desc {
+      font-size: 15px;
+      color: #475569;
+      margin-bottom: 24px;
+      line-height: 1.7;
+      padding-left: 52px;
+    }
+
+    /* ===== MOCKUP FRAME ===== */
+    .mockup-outer {
+      background: #e2e8f0;
+      border-radius: 12px;
+      padding: 10px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .mockup-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 12px 10px;
+    }
+    .mockup-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+    .mockup-dot.red { background: #ef4444; }
+    .mockup-dot.yellow { background: #f59e0b; }
+    .mockup-dot.green { background: #22c55e; }
+    .mockup-url {
+      flex: 1;
+      background: white;
+      border-radius: 4px;
+      padding: 3px 10px;
+      font-size: 11px;
+      color: #64748b;
+      margin-left: 8px;
+    }
+    .mockup-frame {
+      background: #f8fafc;
+      border-radius: 6px;
+      overflow: hidden;
+      font-size: 12px;
+    }
+
+    /* ===== APP UI COMPONENTS ===== */
+
+    /* Sidebar */
+    .app-shell {
+      display: flex;
+      min-height: 420px;
+    }
+    .app-sidebar {
+      width: 180px;
+      min-width: 180px;
+      background: #0d9488;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+    }
+    .sidebar-brand {
+      padding: 16px 14px 14px;
+      font-size: 14px;
+      font-weight: 700;
+      color: white;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      letter-spacing: -0.3px;
+    }
+    .sidebar-nav {
+      padding: 8px 0;
+      flex: 1;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.8);
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+    .nav-item.active {
+      background: rgba(255,255,255,0.15);
+      color: white;
+      font-weight: 600;
+    }
+    .nav-item:hover:not(.active) {
+      background: rgba(255,255,255,0.08);
+    }
+    .sidebar-footer {
+      padding: 12px 14px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .avatar-circle {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+      color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .avatar-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .avatar-name {
+      font-size: 11px;
+      font-weight: 600;
+      color: white;
+    }
+    .avatar-signout {
+      font-size: 10px;
+      color: rgba(255,255,255,0.65);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    /* Main content area */
+    .app-main {
+      flex: 1;
+      padding: 20px 22px;
+      background: #f8fafc;
+      overflow: hidden;
+    }
+    .page-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 2px;
+    }
+    .page-subtitle {
+      font-size: 11px;
+      color: #64748b;
+      margin-bottom: 16px;
+    }
+
+    /* Stat cards */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .stat-card {
+      background: white;
+      border-radius: 8px;
+      padding: 12px;
+      border-left: 3px solid #0d9488;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .stat-card.emerald { border-left-color: #10b981; }
+    .stat-card.amber { border-left-color: #f59e0b; }
+    .stat-card.blue { border-left-color: #3b82f6; }
+    .stat-label {
+      font-size: 10px;
+      color: #64748b;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    .stat-value {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .stat-icon {
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    /* Cards grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .info-card {
+      background: white;
+      border-radius: 8px;
+      padding: 14px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .card-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    /* Score dots */
+    .score-dots {
+      display: flex;
+      gap: 2px;
+      align-items: center;
+    }
+    .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #0d9488;
+    }
+    .dot.empty {
+      background: #e2e8f0;
+    }
+
+    /* Program table */
+    .prog-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px solid #f8fafc;
+      font-size: 11px;
+    }
+    .prog-name {
+      color: #374151;
+      font-weight: 500;
+      width: 120px;
+    }
+    .prog-meter {
+      display: flex;
+      gap: 2px;
+    }
+    .prog-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #0d9488;
+    }
+    .prog-dot.e { background: #e2e8f0; }
+    .count-badge {
+      background: #f0fdfa;
+      color: #0d9488;
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    /* Survey tile */
+    .survey-tile {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 0;
+      border-bottom: 1px solid #f8fafc;
+    }
+    .initial-circle {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+    .tile-info { flex: 1; }
+    .tile-name { font-size: 11px; font-weight: 600; color: #1e293b; }
+    .tile-course { font-size: 10px; color: #64748b; }
+
+    /* Table styles */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+    }
+    .data-table th {
+      background: #f8fafc;
+      color: #475569;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 8px 8px;
+      text-align: left;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .data-table td {
+      padding: 8px 8px;
+      border-bottom: 1px solid #f1f5f9;
+      color: #374151;
+    }
+    .data-table tr:nth-child(even) td {
+      background: #f8fffd;
+    }
+    .btn-teal {
+      background: #0d9488;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 3px 8px;
+      font-size: 10px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-gray {
+      background: #f1f5f9;
+      color: #94a3b8;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      padding: 3px 8px;
+      font-size: 10px;
+      font-weight: 600;
+      cursor: not-allowed;
+    }
+    .btn-ghost {
+      background: transparent;
+      color: #64748b;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: #0d9488;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-danger {
+      background: #ef4444;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Info banner */
+    .info-banner {
+      background: #f0fdfa;
+      border: 1px solid #99f6e4;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 11px;
+      color: #0f766e;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Page header row */
+    .page-header-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    /* Form styles */
+    .form-group {
+      margin-bottom: 14px;
+    }
+    .form-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 4px;
+    }
+    .form-input {
+      width: 100%;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      padding: 7px 10px;
+      font-size: 12px;
+      color: #1e293b;
+      background: white;
+      outline: none;
+    }
+    .form-textarea {
+      width: 100%;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      padding: 7px 10px;
+      font-size: 12px;
+      color: #1e293b;
+      background: white;
+      height: 60px;
+      resize: none;
+    }
+    .score-picker {
+      display: flex;
+      gap: 6px;
+    }
+    .score-btn {
+      flex: 1;
+      border: 1px solid #d1d5db;
+      background: white;
+      border-radius: 6px;
+      padding: 6px 4px;
+      font-size: 10px;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      color: #374151;
+    }
+    .score-btn.selected {
+      background: #0d9488;
+      color: white;
+      border-color: #0d9488;
+    }
+    .form-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .btn-full {
+      width: 100%;
+      background: #0d9488;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Search bar */
+    .search-bar {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 14px;
+      align-items: center;
+    }
+    .search-input {
+      flex: 2;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 11px;
+      color: #374151;
+      background: white;
+    }
+    .search-select {
+      flex: 1;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      padding: 6px 8px;
+      font-size: 11px;
+      color: #374151;
+      background: white;
+    }
+
+    /* Results badge */
+    .results-badge {
+      display: inline-flex;
+      align-items: center;
+      background: #f0fdfa;
+      color: #0d9488;
+      border: 1px solid #ccfbf1;
+      border-radius: 12px;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 10px;
+      margin-bottom: 10px;
+    }
+
+    /* Drawer overlay */
+    .drawer-shell {
+      display: flex;
+      position: relative;
+      min-height: 420px;
+    }
+    .drawer-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.35);
+      z-index: 10;
+      border-radius: 6px;
+    }
+    .drawer-panel {
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: 240px;
+      background: white;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+    }
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .drawer-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .drawer-close {
+      width: 22px; height: 22px;
+      border-radius: 4px;
+      background: #f1f5f9;
+      border: none;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px;
+      cursor: pointer;
+      color: #64748b;
+    }
+    .drawer-body {
+      flex: 1;
+      padding: 14px 16px;
+      overflow-y: auto;
+    }
+    .detail-row {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .detail-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+    .detail-value {
+      font-size: 12px;
+      color: #1e293b;
+      font-weight: 500;
+    }
+    .drawer-footer {
+      padding: 12px 16px;
+      border-top: 1px solid #f1f5f9;
+      display: flex;
+      gap: 8px;
+    }
+
+    /* Sign in page */
+    .signin-page {
+      background: #0d9488;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 380px;
+      padding: 20px;
+    }
+    .signin-card {
+      background: white;
+      border-radius: 12px;
+      padding: 28px 24px;
+      width: 280px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+    .signin-logo {
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    .signin-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+      text-align: center;
+      margin-bottom: 2px;
+    }
+    .signin-sub {
+      font-size: 11px;
+      color: #64748b;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .radio-group {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .radio-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: #374151;
+      cursor: pointer;
+    }
+    .radio-circle {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      border: 2px solid #0d9488;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .radio-circle.checked::after {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #0d9488;
+    }
+    .signin-btn {
+      width: 100%;
+      background: #0d9488;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    /* Divider */
+    .doc-divider {
+      border: none;
+      border-top: 1px solid #f1f5f9;
+      margin: 48px 0;
+    }
+
+    /* Tech Stack / API tables */
+    .ref-section {
+      margin-bottom: 56px;
+    }
+    .ref-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 6px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #f1f5f9;
+    }
+    .ref-desc {
+      font-size: 14px;
+      color: #64748b;
+      margin-bottom: 20px;
+    }
+    .ref-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .ref-table th {
+      background: #0d9488;
+      color: white;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+    .ref-table th:first-child { border-radius: 6px 0 0 0; }
+    .ref-table th:last-child { border-radius: 0 6px 0 0; }
+    .ref-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #f1f5f9;
+      color: #374151;
+      vertical-align: top;
+    }
+    .ref-table tr:nth-child(even) td { background: #f8fffd; }
+    .ref-table tr:last-child td { border-bottom: none; }
+    .ref-table tr:hover td { background: #f0fdfa; }
+
+    .method-badge {
+      display: inline-block;
+      border-radius: 4px;
+      padding: 2px 7px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+    .method-get { background: #dbeafe; color: #1d4ed8; }
+    .method-post { background: #dcfce7; color: #15803d; }
+    .method-put { background: #fef9c3; color: #a16207; }
+    .method-delete { background: #fee2e2; color: #b91c1c; }
+
+    .auth-badge {
+      display: inline-block;
+      background: #f1f5f9;
+      color: #475569;
+      border-radius: 4px;
+      padding: 2px 7px;
+      font-size: 11px;
+      font-weight: 500;
+    }
+    .auth-badge.admin { background: #fef3c7; color: #92400e; }
+
+    code {
+      background: #f1f5f9;
+      color: #0f172a;
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+    }
+
+    /* Footer */
+    .doc-footer {
+      background: #0f172a;
+      color: #94a3b8;
+      padding: 28px 60px;
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-brand {
+      font-size: 14px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 4px;
+    }
+    .footer-right {
+      text-align: right;
+    }
+
+    /* Anchor offset for fixed nav */
+    .anchor-target {
+      scroll-margin-top: 20px;
+    }
+
+    /* Warning box */
+    .warning-box {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 12px;
+      color: #c2410c;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .warning-icon { font-size: 14px; flex-shrink: 0; }
+  </style>
+</head>
+<body>
+
+<div class="doc-wrapper">
+
+  <!-- COVER -->
+  <div class="cover">
+    <span class="cover-logo">📊</span>
+    <div class="cover-title">PulseCheck</div>
+    <div class="cover-subtitle">Feedback Collection Portal — Product Documentation</div>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Version</span>
+        <span class="cover-meta-value">1.0.0</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Release Date</span>
+        <span class="cover-meta-value">15 May 2026</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Author</span>
+        <span class="cover-meta-value">Abhishek P R</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Status</span>
+        <span class="cover-meta-value">Production</span>
+      </div>
+    </div>
+    <div class="cover-badge">✅ Stable Release &nbsp;·&nbsp; Full-Stack Web Application</div>
+  </div>
+
+  <!-- DOCUMENT CONTENT -->
+  <div class="doc-content">
+
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc-section">
+      <div class="toc-title">Table of Contents</div>
+      <div class="toc-grid">
+        <a class="toc-link" href="#screen-signin"><span class="toc-num">1</span>Sign In Page</a>
+        <a class="toc-link" href="#screen-overview"><span class="toc-num">2</span>Overview Dashboard</a>
+        <a class="toc-link" href="#screen-entries"><span class="toc-num">3</span>Entries Page</a>
+        <a class="toc-link" href="#screen-newentry"><span class="toc-num">4</span>New Entry Form</a>
+        <a class="toc-link" href="#screen-explore"><span class="toc-num">5</span>Explore (Search &amp; Filter)</a>
+        <a class="toc-link" href="#screen-detail"><span class="toc-num">6</span>Entry Detail Drawer</a>
+        <a class="toc-link" href="#screen-edit"><span class="toc-num">7</span>Edit Entry Drawer</a>
+        <a class="toc-link" href="#screen-delete"><span class="toc-num">8</span>Delete Confirmation</a>
+        <a class="toc-link" href="#tech-stack"><span class="toc-num">T</span>Tech Stack</a>
+        <a class="toc-link" href="#api-reference"><span class="toc-num">A</span>API Reference</a>
+        <a class="toc-link" href="#db-schema"><span class="toc-num">D</span>Database Schema</a>
+        <a class="toc-link" href="#roles"><span class="toc-num">R</span>Roles &amp; Permissions</a>
+      </div>
+    </div>
+
+    <!-- ===== SCREEN 1: SIGN IN ===== -->
+    <div class="doc-section anchor-target" id="screen-signin">
+      <div class="section-header">
+        <div class="section-num">1</div>
+        <div>
+          <span class="section-title">Sign In Page</span>
+          <span class="section-tag">Public Route</span>
+        </div>
+      </div>
+      <div class="section-desc">
+        The Sign In page is the entry point for all users. It presents a clean centered card on a teal gradient background, allowing users to identify themselves either as a Viewer (read-only access) or an Administrator (full edit/delete access). Viewers only need to supply their name, while Administrators must also enter a password to unlock management capabilities.
+      </div>
+
+      <div class="mockup-outer">
+        <div class="mockup-bar">
+          <div class="mockup-dot red"></div>
+          <div class="mockup-dot yellow"></div>
+          <div class="mockup-dot green"></div>
+          <div class="mockup-url">localhost:5173 — PulseCheck</div>
+        </div>
+        <div class="mockup-frame">
+          <div class="signin-page">
+            <div class="signin-card">
+              <div class="signin-logo">📊</div>
+              <div class="signin-title">PulseCheck</div>
+              <div class="signin-sub">Sign in to continue</div>
+
+              <div class="radio-group">
+                <label class="radio-item">
+                  <div class="radio-circle checked"></div>
+                  Viewer
+                </label>
+                <label class="radio-item">
+                  <div class="radio-circle"></div>
+                  Administrator
+                </label>
+              </div>
+
+              <div class="form-group">
+                <div class="form-label">Your name</div>
+                <div class="form-input" style="color:#94a3b8;">Enter your name...</div>
+              </div>
+
+              <div class="form-group" style="opacity:0.45;">
+                <div class="form-label">Password <span style="font-size:9px;color:#94a3b8;">(admin only)</span></div>
+                <div class="form-input" style="color:#94a3b8;">••••••••</div>
+              </div>
+
+              <button class="signin-btn">Sign In</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== SCREEN 2: OVERVIEW ===== -->
+    <div class="doc-section anchor-target" id="screen-overview">
+      <div class="section-header">
+        <div class="section-num">2</div>
+        <div>
+          <span class="section-title">Overview Dashboard</span>
+          <span class="section-tag">All Users</span>
+        </div>
+      </div>
+      <div class="section-desc">
+        The Overview page is the main landing screen after sign-in. It provides a birds-eye summary of all collected feedback through four prominent stat cards. Below the stats, two side-by-side cards show average scores broken down by program and a live feed of the most recent submissions, giving administrators and viewers instant insight into training effectiveness.
+      </div>
+
+      <div class="mockup-outer">
+        <div class="mockup-bar">
+          <div class="mockup-dot red"></div>
+          <div class="mockup-dot yellow"></div>
+          <div class="mockup-dot green"></div>
+          <div class="mockup-url">localhost:5173/overview — PulseCheck</div>
+        </div>
+        <div class="mockup-frame">
+          <div class="app-shell">
+            <!-- Sidebar -->
+            <div class="app-sidebar">
+              <div class="sidebar-brand">📊 PulseCheck</div>
+              <div class="sidebar-nav">
+                <div class="nav-item active">📊 Overview</div>
+                <div class="nav-item">📝 Entries</div>
+                <div class="nav-item">✍ New Entry</div>
+                <div class="nav-item">🔍 Explore</div>
+              </div>
+              <div class="sidebar-footer">
+                <div class="avatar-circle">A</div>
+                <div class="avatar-info">
+                  <div class="avatar-name">Admin User</div>
+                  <div class="avatar-signout">Sign out</div>
+                </div>
+              </div>
+            </div>
+            <!-- Main -->
+            <div class="app-main">
+              <div class="page-title">Overview</div>
+              <div class="page-subtitle">Summary of all submitted feedback</div>
+
+              <div class="stat-grid">
+                <div class="stat-card">
+                  <div class="stat-icon">📋</div>
+                  <div class="stat-label">Total Entries</div>
+                  <div class="stat-value">24</div>
+                </div>
+                <div class="stat-card emerald">
+                  <div class="stat-icon">⭐</div>
+                  <div class="stat-label">Average Score</div>
+                  <div class="stat-value">4.1</div>
+                </div>
+                <div class="stat-card amber">
+                  <div class="stat-icon">🏆</div>
+                  <div class="stat-label">5-Star Ratings</div>
+                  <div class="stat-value">8</div>
+                </div>
+                <div class="stat-card blue">
+                  <div class="stat-icon">📚</div>
+                  <div class="stat-label">Programs</div>
+                  <div class="stat-value">6</div>
+                </div>
+              </div>
+
+              <div class="cards-grid">
+                <!-- Left: avg by program -->
+                <div class="info-card">
+                  <div class="card-title">Average Score by Program</div>
+                  <div class="prog-row">
+                    <div class="prog-name">Python Basics</div>
+                    <div class="prog-meter">
+                      <div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div>
+                      <div class="prog-dot"></div><div class="prog-dot e"></div>
+                    </div>
+                    <div class="count-badge">4.5 · 7</div>
+                  </div>
+                  <div class="prog-row">
+                    <div class="prog-name">Data Science</div>
+                    <div class="prog-meter">
+                      <div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div>
+                      <div class="prog-dot"></div><div class="prog-dot e"></div>
+                    </div>
+                    <div class="count-badge">4.2 · 6</div>
+                  </div>
+                  <div class="prog-row">
+                    <div class="prog-name">Cloud Fundamentals</div>
+                    <div class="prog-meter">
+                      <div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div>
+                      <div class="prog-dot e"></div><div class="prog-dot e"></div>
+                    </div>
+                    <div class="count-badge">3.8 · 5</div>
+                  </div>
+                  <div class="prog-row">
+                    <div class="prog-name">DevOps Bootcamp</div>
+                    <div class="prog-meter">
+                      <div class="prog-dot"></div><div class="prog-dot"></div><div class="prog-dot"></div>
+                      <div class="prog-dot e"></div><div class="prog-dot e"></div>
+                    </div>
+                    <div class="count-badge">3.5 · 6</div>
+                  </div>
+                </div>
+
+                <!-- Right: recent entries -->
+                <div class="info-card">
+                  <div class="card-title">Recent Entries</div>
+                  <div class="survey-tile">
+                    <div class="initial-circle" style="background:#0d9488;">P</div>
+                    <div class="tile-info">
+                      <div class="tile-name">Priya Sharma</div>
+                      <div class="tile-course">Python Basics</div>
+                    </div>
+                    <div class="score-dots">
+                      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                      <div class="dot"></div><div class="dot"></div>
+                    </div>
+                  </div>
+                  <div class="survey-tile">
+                    <div class="initial-circle" style="background:#3b82f6;">R</div>
+                    <div class="tile-info">
+                      <div class="tile-name">Rahul Mehta</div>
+                      <div class="tile-course">Data Science</div>
+                    </div>
+                    <div class="score-dots">
+                      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                      <div class="dot"></div><div class="dot empty"></div>
+                    </div>
+                  </div>
+                  <div class="survey-tile">
+                    <div class="initial-circle" style="background:#f59e0b;">A</div>
+                    <div class="tile-info">
+                      <div class="tile-name">Aisha Khan</div>
+                      <div class="tile-course">Cloud Fundamentals</div>
+                    </div>
+                    <div class="score-dots">
+                      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                      <div class="dot empty"></div><div class="dot empty"></div>
+                    </div>
+                  </div>
+                  <div class="survey-tile">
+                    <div class="initial-circle" style="background:#8b5cf6;">S</div>
+                    <div class="tile-info">
+                      <div class="tile-name">Suresh Iyer</div>
+                      <div class="tile-course">DevOps Bootcamp</div>
+                    </div>
+                    <div class="score-dots">
+                      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                      <div class="dot"></div><div class="dot empty"></div>
+                    </div>
+                  </div>
+                  <div class="survey-tile">
+                    <div class="initial-circle" style="background:#ec4899;">N</div>
+                    <div class="tile-info">
+                      <div class="tile-name">Neha Gupta</div>
+                      <div class="tile-course">Python Basics</div>
+                    </div>
+                    <div class="score-dots">
+                      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                      <div class="dot"></div><div class="dot"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== SCREEN 3: ENTRIES ===== -->
+    <div class="doc-section anchor-target" id="screen-entries">
+      <div class="section-header">
+        <div class="section-num">3</div>
+        <div>
+          <span class="section-title">Entries Page</span>
+          <span class="section-tag">All Users</span>
+        </div>
+      </div>
+      <div class="section-desc">
+        The Entries page lists all submitted feedback in a sortable table. Viewers can browse all records and click View to inspect details but cannot modify data. A contextual banner reminds viewers of their role. Administrators see active Edit and Delete action buttons for each row. Zebra striping and dot-based score indicators make the table easy to scan at a glance.
+      </div>
+
+      <div class="mockup-outer">
+        <div class="mockup-bar">
+          <div class="mockup-dot red"></div>
+          <div class="mockup-dot yellow"></div>
+          <div class="mockup-dot green"></div>
+          <div class="mockup-url">localhost:5173/entries — PulseCheck</div>
+        </div>
+        <div class="mockup-frame">
+          <div class="app-shell">
+            <div class="app-sidebar">
+              <div class="sidebar-brand">📊 PulseCheck</div>
+              <div class="sidebar-nav">
+                <div class="nav-item">📊 Overview</div>
+                <div class="nav-item active">📝 Entries</div>
+                <div class="nav-item">✍ New Entry</div>
+                <div class="nav-item">🔍 Explore</div>
+              </div>
+              <div class="sidebar-footer">
+                <div class="avatar-circle">V</div>
+                <div class="avatar-info">
+                  <div class="avatar-name">Viewer</div>
+                  <div class="avatar-signout">Sign out</div>
+                </div>
+              </div>
+            </div>
+            <div class="app-main">
+              <div class="page-header-row">
+                <div>
+                  <div class="page-title">Entries</div>
+                  <div class="page-subtitle">All submitted feedback records</div>
+                </div>
+                <button class="btn-primary" style="font-size:11px;padding:5px 12px;">+ Submit New</button>
+              </div>
+
+              <div class="info-banner">
+                ℹ️ You are signed in as <strong style="margin:0 3px;">Viewer</strong>. Editing requires Administrator access.
+              </div>
+
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Respondent</th>
+                    <th>Program</th>
+                    <th>Score</th>
+                    <th>Remarks</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td><strong>Priya Sharma</strong></td>
+                    <td>Python Basics</td>
+                    <td><div class="score-dots" style="gap:2px;">
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                    </div></td>
+                    <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Very well structured.</td>
+                    <td>14 May 2025</td>
+                    <td style="white-space:nowrap;display:flex;gap:4px;align-items:center;">
+                      <button class="btn-teal">View</button>
+                      <button class="btn-gray">Edit</button>
+                      <button class="btn-gray">Del</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td><strong>Rahul Mehta</strong></td>
+                    <td>Data Science</td>
+                    <td><div class="score-dots" style="gap:2px;">
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot empty" style="width:7px;height:7px;"></div>
+                    </div></td>
+                    <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Good pace, more labs.</td>
+                    <td>13 May 2025</td>
+                    <td style="white-space:nowrap;display:flex;gap:4px;align-items:center;">
+                      <button class="btn-teal">View</button>
+                      <button class="btn-gray">Edit</button>
+                      <button class="btn-gray">Del</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td><strong>Aisha Khan</strong></td>
+                    <td>Cloud Fundamentals</td>
+                    <td><div class="score-dots" style="gap:2px;">
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot empty" style="width:7px;height:7px;"></div>
+                      <div class="dot empty" style="width:7px;height:7px;"></div>
+                    </div></td>
+                    <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Needs updated content.</td>
+                    <td>12 May 2025</td>
+                    <td style="white-space:nowrap;display:flex;gap:4px;align-items:center;">
+                      <button class="btn-teal">View</button>
+                      <button class="btn-gray">Edit</button>
+                      <button class="btn-gray">Del</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td><strong>Suresh Iyer</strong></td>
+                    <td>DevOps Bootcamp</td>
+                    <td><div class="score-dots" style="gap:2px;">
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot empty" style="width:7px;height:7px;"></div>
+                    </div></td>
+                    <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Enjoyed hands-on labs.</td>
+                    <td>11 May 2025</td>
+                    <td style="white-space:nowrap;display:flex;gap:4px;align-items:center;">
+                      <button class="btn-teal">View</button>
+                      <button class="btn-gray">Edit</button>
+                      <button class="btn-gray">Del</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td><strong>Neha Gupta</strong></td>
+                    <td>Python Basics</td>
+                    <td><div class="score-dots" style="gap:2px;">
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                    </div></td>
+                    <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Excellent trainer!</td>
+                    <td>10 May 2025</td>
+                    <td style="white-space:nowrap;display:flex;gap:4px;align-items:center;">
+                      <button class="btn-teal">View</button>
+                      <button class="btn-gray">Edit</button>
+                      <button class="btn-gray">Del</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== SCREEN 4: NEW ENTRY ===== -->
+    <div class="doc-section anchor-target" id="screen-newentry">
+      <div class="section-header">
+        <div class="section-num">4</div>
+        <div>
+          <span class="section-title">New Entry Form</span>
+          <span class="section-tag">All Users</span>
+        </div>
+      </div>
+      <div class="section-desc">
+        The New Entry form allows any authenticated user — Viewer or Administrator — to submit fresh feedback. The score picker uses five clearly labeled rectangular buttons (1 Terrible through 5 Excellent), providing an intuitive rating interface. A remarks textarea allows free-form comments. Submitting the form appends the record to the database and refreshes aggregate statistics on the Overview.
+      </div>
+
+      <div class="mockup-outer">
+        <div class="mockup-bar">
+          <div class="mockup-dot red"></div>
+          <div class="mockup-dot yellow"></div>
+          <div class="mockup-dot green"></div>
+          <div class="mockup-url">localhost:5173/new-entry — PulseCheck</div>
+        </div>
+        <div class="mockup-frame">
+          <div class="app-shell">
+            <div class="app-sidebar">
+              <div class="sidebar-brand">📊 PulseCheck</div>
+              <div class="sidebar-nav">
+                <div class="nav-item">📊 Overview</div>
+                <div class="nav-item">📝 Entries</div>
+                <div class="nav-item active">✍ New Entry</div>
+                <div class="nav-item">🔍 Explore</div>
+              </div>
+              <div class="sidebar-footer">
+                <div class="avatar-circle">A</div>
+                <div class="avatar-info">
+                  <div class="avatar-name">Admin User</div>
+                  <div class="avatar-signout">Sign out</div>
+                </div>
+              </div>
+            </div>
+            <div class="app-main">
+              <div class="page-title">New Entry</div>
+              <div class="page-subtitle">Submit feedback for a program or event</div>
+
+              <div class="info-card" style="margin-top:14px;max-width:460px;">
+                <div class="form-group">
+                  <div class="form-label">Respondent Name *</div>
+                  <div class="form-input" style="color:#94a3b8;">Enter full name...</div>
+                </div>
+                <div class="form-group">
+                  <div class="form-label">Program / Event Name *</div>
+                  <div class="form-input" style="color:#94a3b8;">e.g. Python Basics, DevOps Bootcamp...</div>
+                </div>
+                <div class="form-group">
+                  <div class="form-label">Score *</div>
+                  <div class="score-picker">
+                    <div class="score-btn"><div>1</div><div style="font-size:9px;">Terrible</div></div>
+                    <div class="score-btn"><div>2</div><div style="font-size:9px;">Poor</div></div>
+                    <div class="score-btn"><div>3</div><div style="font-size:9px;">Okay</div></div>
+                    <div class="score-btn selected"><div>4</div><div style="font-size:9px;">Good</div></div>
+                    <div class="score-btn"><div>5</div><div style="font-size:9px;">Excellent</div></div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="form-label">Remarks</div>
+                  <div class="form-textarea" style="color:#94a3b8;display:flex;align-items:flex-start;padding-top:8px;">Any additional comments...</div>
+                </div>
+                <div class="form-actions">
+                  <button class="btn-full">Submit Entry</button>
+                  <button class="btn-ghost" style="font-size:12px;padding:7px;">Clear</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== SCREEN 5: EXPLORE ===== -->
+    <div class="doc-section anchor-target" id="screen-explore">
+      <div class="section-header">
+        <div class="section-num">5</div>
+        <div>
+          <span class="section-title">Explore (Search &amp; Filter)</span>
+          <span class="section-tag">All Users</span>
+        </div>
+      </div>
+      <div class="section-desc">
+        The Explore page provides powerful search and filtering capabilities over all feedback entries. Users can combine a free-text keyword search with a program dropdown and a minimum-rating filter. Results are returned instantly and displayed in the same table format as the Entries page, with a results count badge keeping users oriented.
+      </div>
+
+      <div class="mockup-outer">
+        <div class="mockup-bar">
+          <div class="mockup-dot red"></div>
+          <div class="mockup-dot yellow"></div>
+          <div class="mockup-dot green"></div>
+          <div class="mockup-url">localhost:5173/explore — PulseCheck</div>
+        </div>
+        <div class="mockup-frame">
+          <div class="app-shell">
+            <div class="app-sidebar">
+              <div class="sidebar-brand">📊 PulseCheck</div>
+              <div class="sidebar-nav">
+                <div class="nav-item">📊 Overview</div>
+                <div class="nav-item">📝 Entries</div>
+                <div class="nav-item">✍ New Entry</div>
+                <div class="nav-item active">🔍 Explore</div>
+              </div>
+              <div class="sidebar-footer">
+                <div class="avatar-circle">A</div>
+                <div class="avatar-info">
+                  <div class="avatar-name">Admin User</div>
+                  <div class="avatar-signout">Sign out</div>
+                </div>
+              </div>
+            </div>
+            <div class="app-main">
+              <div class="page-title">Explore</div>
+              <div class="page-subtitle">Search and filter all feedback records</div>
+
+              <div class="search-bar" style="margin-top:14px;">
+                <div class="search-input" style="display:flex;align-items:center;gap:6px;color:#94a3b8;">
+                  🔍 &nbsp;Keyword search...
+                </div>
+                <select class="search-select" style="pointer-events:none;">
+                  <option>All Programs</option>
+                </select>
+                <select class="search-select" style="pointer-events:none;">
+                  <option>All Ratings</option>
+                </select>
+                <button class="btn-primary" style="font-size:11px;padding:5px 10px;white-space:nowrap;">Search</button>
+                <button class="btn-ghost" style="font-size:11px;padding:5px 10px;">Clear</button>
+              </div>
+
+              <div class="results-badge">3 results found</div>
+
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Respondent</th>
+                    <th>Program</th>
+                    <th>Score</th>
+                    <th>Remarks</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td><strong>Priya Sharma</strong></td>
+                    <td>Python Basics</td>
+                    <td><div class="score-dots" style="gap:2px;">
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                    </div></td>
+                    <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Very well structured.</td>
+                    <td>14 May 2025</td>
+                    <td style="display:flex;gap:4px;align-items:center;">
+                      <button class="btn-teal">View</button>
+                      <button class="btn-teal">Edit</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td><strong>Neha Gupta</strong></td>
+                    <td>Python Basics</td>
+                    <td><div class="score-dots" style="gap:2px;">
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                    </div></td>
+                    <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Excellent trainer!</td>
+                    <td>10 May 2025</td>
+                    <td style="display:flex;gap:4px;align-items:center;">
+                      <button class="btn-teal">View</button>
+                      <button class="btn-teal">Edit</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>9</td>
+                    <td><strong>Vikram Nair</strong></td>
+                    <td>Python Basics</td>
+                    <td><div class="score-dots" style="gap:2px;">
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot" style="width:7px;height:7px;"></div>
+                      <div class="dot empty" style="width:7px;height:7px;"></div>
+                    </div></td>
+                    <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Clear concepts, good.</td>
+                    <td>08 May 2025</td>
+                    <td style="display:flex;gap:4px;align-items:center;">
+                      <button class="btn-teal">View</button>
+                      <button class="btn-teal">Edit</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== SCREEN 6: ENTRY DETAIL DRAWER ===== -->
+    <div class="doc-section anchor-target" id="screen-detail">
+      <div class="section-header">
+        <div class="section-num">6</div>
+        <div>
+          <span class="section-title">Entry Detail Drawer</span>
+          <span class="section-tag">All Users</span>
+        </div>
+      </div>
+      <div class="section-desc">
+        Clicking the View button on any entry slides open a read-only detail panel from the right edge of the screen. A semi-transparent overlay darkens the rest of the interface to maintain focus on the selected record. All fields are displayed in a clean label-value layout. Viewers see only a Close button; Administrators see an additional grayed-out Edit Entry button indicating the action is available in admin mode.
+      </div>
+
+      <div class="mockup-outer">
+        <div class="mockup-bar">
+          <div class="mockup-dot red"></div>
+          <div class="mockup-dot yellow"></div>
+          <div class="mockup-dot green"></div>
+          <div class="mockup-url">localhost:5173/entries — PulseCheck · Entry #12</div>
+        </div>
+        <div class="mockup-frame">
+          <div style="position:relative;">
+            <div class="app-shell" style="filter:brightness(0.6);">
+              <div class="app-sidebar">
+                <div class="sidebar-brand">📊 PulseCheck</div>
+                <div class="sidebar-nav">
+                  <div class="nav-item">📊 Overview</div>
+                  <div class="nav-item active">📝 Entries</div>
+                  <div class="nav-item">✍ New Entry</div>
+                  <div class="nav-item">🔍 Explore</div>
+                </div>
+                <div class="sidebar-footer">
+                  <div class="avatar-circle">V</div>
+                  <div class="avatar-info">
+                    <div class="avatar-name">Viewer</div>
+                    <div class="avatar-signout">Sign out</div>
+                  </div>
+                </div>
+              </div>
+              <div class="app-main">
+                <div class="page-title">Entries</div>
+                <div class="page-subtitle">All submitted feedback records</div>
+                <table class="data-table" style="margin-top:14px;">
+                  <thead>
+                    <tr>
+                      <th>#</th><th>Respondent</th><th>Program</th><th>Score</th><th>Date</th><th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>12</td><td><strong>Priya Sharma</strong></td><td>Python Basics</td>
+                      <td><div class="score-dots" style="gap:2px;"><div class="dot" style="width:7px;height:7px;"></div><div class="dot" style="width:7px;height:7px;"></div><div class="dot" style="width:7px;height:7px;"></div><div class="dot" style="width:7px;height:7px;"></div><div class="dot" style="width:7px;height:7px;"></div></div></td>
+                      <td>14 May 2025</td><td><button class="btn-teal">View</button></td>
+                    </tr>
+                    <tr><td>11</td><td><strong>Rahul Mehta</strong></td><td>Data Science</td>
+                      <td><div class="score-dots" style="gap:2px;"><div class="dot" style="width:7px;height:7px;"></div><div class="dot" style="width:7px;height:7px;"></div><div class="dot" style="width:7px;height:7px;"></div><div class="dot" style="width:7px;height:7px;"></div><div class="dot empty" style="width:7px;height:7px;"></div></div></td>
+                      <td>13 May 2025</td><td><button class="btn-teal">View</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Drawer panel (on top, not blurred) -->
+            <div style="position:absolute;top:0;right:0;bottom:0;width:240px;background:white;box-shadow:-4px 0 20px rgba(0,0,0,0.2);display:flex;flex-direction:column;z-index:20;">
+              <div class="drawer-header">
+                <span class="drawer-title">Entry Detail</span>
+                <button class="drawer-close">✕</button>
+              </div>
+              <div class="drawer-body">
+                <div class="detail-row">
+                  <div class="detail-label">ID</div>
+                  <div class="detail-value">#12</div>
+                </div>
+                <div class="detail-row">
+                  <div class="detail-label">Respondent</div>
+                  <div class="detail-value">Priya Sharma</div>
+                </div>
+                <div class="detail-row">
+                  <div class="detail-label">Program</div>
+                  <div class="detail-value">Python Basics</div>
+                </div>
+                <div class="detail-row">
+                  <div class="detail-label">Score</div>
+                  <div class="detail-value" style="display:flex;align-items:center;gap:6px;">
+                    <div class="score-dots">
+                      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                      <div class="dot"></div><div class="dot"></div>
+                    </div>
+                    <span style="font-size:11px;color:#64748b;">Excellent</span>
+                  </div>
+                </div>
+                <div class="detail-row">
+                  <div class="detail-label">Remarks</div>
+                  <div class="detail-value" style="font-style:italic;color:#475569;">"Very well structured course."</div>
+                </div>
+                <div class="detail-row" style="border-bottom:none;">
+                  <div class="detail-label">Date</div>
+                  <div class="detail-value">14 May 2025</div>
+                </div>
+              </div>
+              <div class="drawer-footer">
+                <button class="btn-gray" style="flex:1;cursor:not-allowed;font-size:11px;">Edit Entry</button>
+                <button class="btn-ghost" style="flex:1;font-size:11px;">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== SCREEN 7: EDIT DRAWER ===== -->
+    <div class="doc-section anchor-target" id="screen-edit">
+      <div class="section-header">
+        <div class="section-num">7</div>
+        <div>
+          <span class="section-title">Edit Entry Drawer</span>
+          <span class="section-tag">Admin Only</span>
+        </div>
+      </div>
+      <div class="section-desc">
+        Administrators can click Edit on any entry row to open the Edit Entry drawer, which slides in from the right. All form fields are pre-populated with the existing record's data, allowing quick inline corrections. The score picker shows the current selection highlighted. Changes are persisted to the database on clicking Save Changes, after which the drawer closes and the Entries table refreshes automatically.
+      </div>
+
+      <div class="mockup-outer">
+        <div class="mockup-bar">
+          <div class="mockup-dot red"></div>
+          <div class="mockup-dot yellow"></div>
+          <div class="mockup-dot green"></div>
+          <div class="mockup-url">localhost:5173/entries — PulseCheck · Edit #12</div>
+        </div>
+        <div class="mockup-frame">
+          <div style="position:relative;">
+            <div class="app-shell" style="filter:brightness(0.6);">
+              <div class="app-sidebar">
+                <div class="sidebar-brand">📊 PulseCheck</div>
+                <div class="sidebar-nav">
+                  <div class="nav-item">📊 Overview</div>
+                  <div class="nav-item active">📝 Entries</div>
+                  <div class="nav-item">✍ New Entry</div>
+                  <div class="nav-item">🔍 Explore</div>
+                </div>
+                <div class="sidebar-footer">
+                  <div class="avatar-circle">A</div>
+                  <div class="avatar-info">
+                    <div class="avatar-name">Admin User</div>
+                    <div class="avatar-signout">Sign out</div>
+                  </div>
+                </div>
+              </div>
+              <div class="app-main">
+                <div class="page-title">Entries</div>
+                <div class="page-subtitle">All submitted feedback records</div>
+                <table class="data-table" style="margin-top:14px;">
+                  <thead>
+                    <tr>
+                      <th>#</th><th>Respondent</th><th>Program</th><th>Score</th><th>Date</th><th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>12</td><td><strong>Priya Sharma</strong></td><td>Python Basics</td>
+                      <td><div class="score-dots" style="gap:2px;"><div class="dot" style="width:7px;height:7px;"></div><div class="dot" style="width:7px;height:7px;"></div><div class="dot" style="width:7px;height:7px;"></div><div class="dot" style="width:7px;height:7px;"></div><div class="dot" style="width:7px;height:7px;"></div></div></td>
+                      <td>14 May 2025</td>
+                      <td style="display:flex;gap:3px;"><button class="btn-teal">View</button><button class="btn-teal">Edit</button><button class="btn-gray" style="background:#fee2e2;color:#b91c1c;border-color:#fca5a5;">Del</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div style="position:absolute;top:0;right:0;bottom:0;width:260px;background:white;box-shadow:-4px 0 20px rgba(0,0,0,0.2);display:flex;flex-direction:column;z-index:20;">
+              <div class="drawer-header">
+                <span class="drawer-title">Edit Entry</span>
+                <button class="drawer-close">✕</button>
+              </div>
+              <div class="drawer-body">
+                <div class="form-group">
+                  <div class="form-label">Respondent Name *</div>
+                  <div class="form-input">Priya Sharma</div>
+                </div>
+                <div class="form-group">
+                  <div class="form-label">Program / Event Name *</div>
+                  <div class="form-input">Python Basics</div>
+                </div>
+                <div class="form-group">
+                  <div class="form-label">Score *</div>
+                  <div class="score-picker">
+                    <div class="score-btn" style="font-size:9px;">1<br>Terrible</div>
+                    <div class="score-btn" style="font-size:9px;">2<br>Poor</div>
+                    <div class="score-btn" style="font-size:9px;">3<br>Okay</div>
+                    <div class="score-btn" style="font-size:9px;">4<br>Good</div>
+                    <div class="score-btn selected" style="font-size:9px;">5<br>Excellent</div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="form-label">Remarks</div>
+                  <div class="form-textarea" style="display:flex;align-items:flex-start;padding-top:8px;">Very well structured course.</div>
+                </div>
+              </div>
+              <div class="drawer-footer">
+                <button class="btn-primary" style="flex:1;font-size:11px;">Save Changes</button>
+                <button class="btn-ghost" style="flex:1;font-size:11px;">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== SCREEN 8: DELETE DRAWER ===== -->
+    <div class="doc-section anchor-target" id="screen-delete">
+      <div class="section-header">
+        <div class="section-num">8</div>
+        <div>
+          <span class="section-title">Delete Confirmation Drawer</span>
+          <span class="section-tag">Admin Only</span>
+        </div>
+      </div>
+      <div class="section-desc">
+        To prevent accidental data loss, clicking the Delete button opens a confirmation drawer rather than deleting the record immediately. The panel clearly identifies the record to be deleted by its ID and displays a permanent-action warning. The destructive Delete Entry button is styled in red to reinforce the severity of the action; clicking Cancel dismisses the drawer without making changes.
+      </div>
+
+      <div class="mockup-outer">
+        <div class="mockup-bar">
+          <div class="mockup-dot red"></div>
+          <div class="mockup-dot yellow"></div>
+          <div class="mockup-dot green"></div>
+          <div class="mockup-url">localhost:5173/entries — PulseCheck · Delete #12</div>
+        </div>
+        <div class="mockup-frame">
+          <div style="position:relative;">
+            <div class="app-shell" style="filter:brightness(0.6);">
+              <div class="app-sidebar">
+                <div class="sidebar-brand">📊 PulseCheck</div>
+                <div class="sidebar-nav">
+                  <div class="nav-item">📊 Overview</div>
+                  <div class="nav-item active">📝 Entries</div>
+                  <div class="nav-item">✍ New Entry</div>
+                  <div class="nav-item">🔍 Explore</div>
+                </div>
+                <div class="sidebar-footer">
+                  <div class="avatar-circle">A</div>
+                  <div class="avatar-info">
+                    <div class="avatar-name">Admin User</div>
+                    <div class="avatar-signout">Sign out</div>
+                  </div>
+                </div>
+              </div>
+              <div class="app-main">
+                <div class="page-title">Entries</div>
+                <table class="data-table" style="margin-top:14px;">
+                  <thead><tr><th>#</th><th>Respondent</th><th>Program</th><th>Score</th><th>Date</th><th>Actions</th></tr></thead>
+                  <tbody>
+                    <tr style="background:#fff1f2;">
+                      <td>12</td><td><strong>Priya Sharma</strong></td><td>Python Basics</td>
+                      <td><div class="score-dots" style="gap:2px;"><div class="dot" style="width:7px;height:7px;"></div><div class="dot" style="width:7px;height:7px;"></div><div class="dot" style="width:7px;height:7px;"></div><div class="dot" style="width:7px;height:7px;"></div><div class="dot" style="width:7px;height:7px;"></div></div></td>
+                      <td>14 May 2025</td>
+                      <td style="display:flex;gap:3px;"><button class="btn-teal">View</button><button class="btn-teal">Edit</button><button style="background:#ef4444;color:white;border:none;border-radius:4px;padding:3px 8px;font-size:10px;font-weight:600;">Del</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div style="position:absolute;top:0;right:0;bottom:0;width:240px;background:white;box-shadow:-4px 0 20px rgba(0,0,0,0.2);display:flex;flex-direction:column;z-index:20;">
+              <div class="drawer-header" style="border-bottom-color:#fee2e2;">
+                <span class="drawer-title" style="color:#b91c1c;">Confirm Delete</span>
+                <button class="drawer-close">✕</button>
+              </div>
+              <div class="drawer-body">
+                <div style="text-align:center;margin-bottom:16px;">
+                  <div style="font-size:36px;margin-bottom:8px;">🗑️</div>
+                  <div style="font-size:13px;font-weight:700;color:#0f172a;margin-bottom:8px;">Delete Entry #12?</div>
+                </div>
+                <div class="warning-box">
+                  <span class="warning-icon">⚠️</span>
+                  <span>This will permanently remove entry #12. This action <strong>cannot be undone</strong>.</span>
+                </div>
+                <div style="font-size:11px;color:#64748b;background:#f8fafc;border-radius:6px;padding:10px 12px;">
+                  <div><strong>Respondent:</strong> Priya Sharma</div>
+                  <div><strong>Program:</strong> Python Basics</div>
+                  <div><strong>Score:</strong> 5 — Excellent</div>
+                </div>
+              </div>
+              <div class="drawer-footer">
+                <button class="btn-danger" style="flex:1;font-size:11px;">Delete Entry</button>
+                <button class="btn-ghost" style="flex:1;font-size:11px;">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="doc-divider" />
+
+    <!-- ===== TECH STACK ===== -->
+    <div class="ref-section anchor-target" id="tech-stack">
+      <div class="ref-title">Tech Stack</div>
+      <div class="ref-desc">PulseCheck is built as a decoupled full-stack application with a React frontend communicating with a Flask REST API backed by a SQLite database.</div>
+      <table class="ref-table">
+        <thead>
+          <tr>
+            <th>Layer</th>
+            <th>Technology</th>
+            <th>Version</th>
+            <th>Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Frontend</strong></td>
+            <td>React</td>
+            <td>18.x</td>
+            <td>Component-based UI rendering, SPA routing</td>
+          </tr>
+          <tr>
+            <td><strong>Frontend</strong></td>
+            <td>Vite</td>
+            <td>5.x</td>
+            <td>Development server and production bundler</td>
+          </tr>
+          <tr>
+            <td><strong>Frontend</strong></td>
+            <td>React Router DOM</td>
+            <td>6.x</td>
+            <td>Client-side page routing and navigation</td>
+          </tr>
+          <tr>
+            <td><strong>Frontend</strong></td>
+            <td>Tailwind CSS</td>
+            <td>3.x</td>
+            <td>Utility-first styling, responsive layout</td>
+          </tr>
+          <tr>
+            <td><strong>Frontend</strong></td>
+            <td>Axios</td>
+            <td>1.x</td>
+            <td>HTTP client for REST API communication</td>
+          </tr>
+          <tr>
+            <td><strong>Backend</strong></td>
+            <td>Python / Flask</td>
+            <td>3.11 / 3.x</td>
+            <td>REST API server, request routing, JSON responses</td>
+          </tr>
+          <tr>
+            <td><strong>Backend</strong></td>
+            <td>Flask-CORS</td>
+            <td>4.x</td>
+            <td>Cross-Origin Resource Sharing headers for frontend</td>
+          </tr>
+          <tr>
+            <td><strong>Backend</strong></td>
+            <td>Flask-SQLAlchemy</td>
+            <td>3.x</td>
+            <td>ORM layer for database model definition and queries</td>
+          </tr>
+          <tr>
+            <td><strong>Database</strong></td>
+            <td>SQLite</td>
+            <td>3.x</td>
+            <td>Lightweight embedded relational database storage</td>
+          </tr>
+          <tr>
+            <td><strong>Auth</strong></td>
+            <td>Session-based (in-memory)</td>
+            <td>—</td>
+            <td>Role differentiation: Viewer vs Administrator</td>
+          </tr>
+          <tr>
+            <td><strong>Dev Tools</strong></td>
+            <td>ESLint + Prettier</td>
+            <td>Latest</td>
+            <td>Code linting and formatting consistency</td>
+          </tr>
+          <tr>
+            <td><strong>Package Mgr</strong></td>
+            <td>npm / pip</td>
+            <td>—</td>
+            <td>Frontend and backend dependency management</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ===== API REFERENCE ===== -->
+    <div class="ref-section anchor-target" id="api-reference">
+      <div class="ref-title">API Reference</div>
+      <div class="ref-desc">All API endpoints are served under <code>http://localhost:5000/api</code>. Viewer-accessible endpoints require no token; Admin endpoints require the session to have been established with the administrator password.</div>
+      <table class="ref-table">
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>Path</th>
+            <th>Auth</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="method-badge method-post">POST</span></td>
+            <td><code>/api/auth/login</code></td>
+            <td><span class="auth-badge">Public</span></td>
+            <td>Authenticate a user. Accepts <code>{ name, role, password? }</code>. Returns session token and user role.</td>
+          </tr>
+          <tr>
+            <td><span class="method-badge method-post">POST</span></td>
+            <td><code>/api/auth/logout</code></td>
+            <td><span class="auth-badge">Any</span></td>
+            <td>Invalidate the current user session and clear stored credentials.</td>
+          </tr>
+          <tr>
+            <td><span class="method-badge method-get">GET</span></td>
+            <td><code>/api/entries</code></td>
+            <td><span class="auth-badge">Any</span></td>
+            <td>Retrieve all feedback entries. Supports optional query params: <code>q</code> (keyword), <code>program</code>, <code>min_score</code>.</td>
+          </tr>
+          <tr>
+            <td><span class="method-badge method-get">GET</span></td>
+            <td><code>/api/entries/:id</code></td>
+            <td><span class="auth-badge">Any</span></td>
+            <td>Retrieve a single feedback entry by its numeric ID. Returns 404 if not found.</td>
+          </tr>
+          <tr>
+            <td><span class="method-badge method-post">POST</span></td>
+            <td><code>/api/entries</code></td>
+            <td><span class="auth-badge">Any</span></td>
+            <td>Create a new feedback entry. Requires body <code>{ respondent, program, score, remarks? }</code>.</td>
+          </tr>
+          <tr>
+            <td><span class="method-badge method-put">PUT</span></td>
+            <td><code>/api/entries/:id</code></td>
+            <td><span class="auth-badge admin">Admin</span></td>
+            <td>Update an existing entry. Partial updates supported; only provided fields are modified.</td>
+          </tr>
+          <tr>
+            <td><span class="method-badge method-delete">DELETE</span></td>
+            <td><code>/api/entries/:id</code></td>
+            <td><span class="auth-badge admin">Admin</span></td>
+            <td>Permanently delete the specified entry. Returns <code>{ message: "Deleted" }</code> on success.</td>
+          </tr>
+          <tr>
+            <td><span class="method-badge method-get">GET</span></td>
+            <td><code>/api/stats/overview</code></td>
+            <td><span class="auth-badge">Any</span></td>
+            <td>Returns aggregate stats: total entries, average score, five-star count, unique program count.</td>
+          </tr>
+          <tr>
+            <td><span class="method-badge method-get">GET</span></td>
+            <td><code>/api/stats/by-program</code></td>
+            <td><span class="auth-badge">Any</span></td>
+            <td>Returns per-program averages and entry counts, sorted by average score descending.</td>
+          </tr>
+          <tr>
+            <td><span class="method-badge method-get">GET</span></td>
+            <td><code>/api/programs</code></td>
+            <td><span class="auth-badge">Any</span></td>
+            <td>Returns distinct list of program names for populating filter dropdowns on the Explore page.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ===== DATABASE SCHEMA ===== -->
+    <div class="ref-section anchor-target" id="db-schema">
+      <div class="ref-title">Database Schema</div>
+      <div class="ref-desc">PulseCheck uses a single-table SQLite schema. All data is stored in <code>feedback.db</code> located in the backend root directory. The schema can be initialized via <code>flask db init</code> or by running <code>python app.py</code> with the auto-create flag enabled.</div>
+
+      <div style="margin-bottom:24px;">
+        <div style="font-size:14px;font-weight:700;color:#0f172a;margin-bottom:10px;display:flex;align-items:center;gap:8px;">
+          <span style="background:#0d9488;color:white;border-radius:4px;padding:2px 8px;font-size:12px;">TABLE</span>
+          <code style="font-size:14px;">feedback_entry</code>
+        </div>
+        <table class="ref-table">
+          <thead>
+            <tr>
+              <th>Column</th>
+              <th>Type</th>
+              <th>Constraints</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>id</code></td>
+              <td>INTEGER</td>
+              <td>PRIMARY KEY, AUTOINCREMENT</td>
+              <td>Unique identifier for each feedback entry.</td>
+            </tr>
+            <tr>
+              <td><code>respondent</code></td>
+              <td>VARCHAR(120)</td>
+              <td>NOT NULL</td>
+              <td>Full name of the person submitting the feedback.</td>
+            </tr>
+            <tr>
+              <td><code>program</code></td>
+              <td>VARCHAR(200)</td>
+              <td>NOT NULL</td>
+              <td>Name of the training program or event being rated.</td>
+            </tr>
+            <tr>
+              <td><code>score</code></td>
+              <td>INTEGER</td>
+              <td>NOT NULL, CHECK (score BETWEEN 1 AND 5)</td>
+              <td>Numeric rating from 1 (Terrible) to 5 (Excellent).</td>
+            </tr>
+            <tr>
+              <td><code>remarks</code></td>
+              <td>TEXT</td>
+              <td>NULLABLE</td>
+              <td>Optional free-form comments or observations from the respondent.</td>
+            </tr>
+            <tr>
+              <td><code>created_at</code></td>
+              <td>DATETIME</td>
+              <td>NOT NULL, DEFAULT CURRENT_TIMESTAMP</td>
+              <td>Timestamp of when the entry was submitted, auto-set by the server.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-bottom:16px;">
+        <div style="font-size:13px;font-weight:700;color:#0f172a;margin-bottom:8px;">Sample INSERT</div>
+        <div style="background:#0f172a;color:#e2e8f0;border-radius:8px;padding:14px 18px;font-family:'Courier New',monospace;font-size:12px;line-height:1.8;overflow-x:auto;">
+          <span style="color:#94a3b8;">-- Insert a new feedback entry</span><br>
+          <span style="color:#38bdf8;">INSERT INTO</span> feedback_entry (respondent, program, score, remarks)<br>
+          <span style="color:#38bdf8;">VALUES</span> (<span style="color:#86efac;">'Priya Sharma'</span>, <span style="color:#86efac;">'Python Basics'</span>, <span style="color:#fbbf24;">5</span>, <span style="color:#86efac;">'Very well structured course.'</span>);
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size:13px;font-weight:700;color:#0f172a;margin-bottom:8px;">Sample SELECT (stats query)</div>
+        <div style="background:#0f172a;color:#e2e8f0;border-radius:8px;padding:14px 18px;font-family:'Courier New',monospace;font-size:12px;line-height:1.8;overflow-x:auto;">
+          <span style="color:#94a3b8;">-- Average score per program</span><br>
+          <span style="color:#38bdf8;">SELECT</span> program,<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#38bdf8;">ROUND</span>(<span style="color:#38bdf8;">AVG</span>(score), <span style="color:#fbbf24;">1</span>) <span style="color:#38bdf8;">AS</span> avg_score,<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#38bdf8;">COUNT</span>(*) <span style="color:#38bdf8;">AS</span> entry_count<br>
+          <span style="color:#38bdf8;">FROM</span> feedback_entry<br>
+          <span style="color:#38bdf8;">GROUP BY</span> program<br>
+          <span style="color:#38bdf8;">ORDER BY</span> avg_score <span style="color:#38bdf8;">DESC</span>;
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ROLES & PERMISSIONS ===== -->
+    <div class="ref-section anchor-target" id="roles">
+      <div class="ref-title">Roles &amp; Permissions</div>
+      <div class="ref-desc">PulseCheck uses a two-role access model. Roles are established at sign-in time and stored in the browser session. No persistent accounts are maintained; roles are verified on every API call for admin-gated endpoints.</div>
+      <table class="ref-table">
+        <thead>
+          <tr>
+            <th>Permission</th>
+            <th>Viewer</th>
+            <th>Administrator</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sign in</td>
+            <td style="color:#16a34a;font-weight:600;">✓ Name only</td>
+            <td style="color:#16a34a;font-weight:600;">✓ Name + Password</td>
+          </tr>
+          <tr>
+            <td>View Overview dashboard</td>
+            <td style="color:#16a34a;font-weight:600;">✓</td>
+            <td style="color:#16a34a;font-weight:600;">✓</td>
+          </tr>
+          <tr>
+            <td>Browse Entries table</td>
+            <td style="color:#16a34a;font-weight:600;">✓</td>
+            <td style="color:#16a34a;font-weight:600;">✓</td>
+          </tr>
+          <tr>
+            <td>View Entry detail drawer</td>
+            <td style="color:#16a34a;font-weight:600;">✓</td>
+            <td style="color:#16a34a;font-weight:600;">✓</td>
+          </tr>
+          <tr>
+            <td>Submit new feedback entry</td>
+            <td style="color:#16a34a;font-weight:600;">✓</td>
+            <td style="color:#16a34a;font-weight:600;">✓</td>
+          </tr>
+          <tr>
+            <td>Search &amp; Filter (Explore)</td>
+            <td style="color:#16a34a;font-weight:600;">✓</td>
+            <td style="color:#16a34a;font-weight:600;">✓</td>
+          </tr>
+          <tr>
+            <td>Edit an existing entry</td>
+            <td style="color:#dc2626;font-weight:600;">✗ Disabled</td>
+            <td style="color:#16a34a;font-weight:600;">✓</td>
+          </tr>
+          <tr>
+            <td>Delete an entry</td>
+            <td style="color:#dc2626;font-weight:600;">✗ Disabled</td>
+            <td style="color:#16a34a;font-weight:600;">✓</td>
+          </tr>
+          <tr>
+            <td>Access admin API endpoints</td>
+            <td style="color:#dc2626;font-weight:600;">✗ 403 Forbidden</td>
+            <td style="color:#16a34a;font-weight:600;">✓</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div><!-- end .doc-content -->
+
+  <!-- FOOTER -->
+  <div class="doc-footer">
+    <div>
+      <div class="footer-brand">📊 PulseCheck</div>
+      <div>Feedback Collection Portal · v1.0.0</div>
+      <div style="margin-top:4px;">Built with React + Flask + SQLite</div>
+    </div>
+    <div class="footer-right">
+      <div>Author: Abhishek P R</div>
+      <div style="margin-top:4px;">abhishek.pr@prodapt.com</div>
+      <div style="margin-top:4px;">15 May 2026</div>
+    </div>
+  </div>
+
+</div><!-- end .doc-wrapper -->
+
+</body>
+</html>

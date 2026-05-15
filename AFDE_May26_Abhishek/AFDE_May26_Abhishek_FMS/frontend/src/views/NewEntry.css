@@ -1,0 +1,32 @@
+/* ============================================================
+   NewEntry.css — Submit new feedback form page
+   ============================================================ */
+
+.new-entry-page {
+  padding: 2rem 2rem 3rem;
+  max-width: 620px;
+}
+
+.new-entry-page h1 {
+  font-size: 1.6rem;
+  margin-bottom: 0.3rem;
+}
+
+.new-entry-subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.8rem;
+}
+
+.new-entry-card {
+  padding: 2rem;
+}
+
+.new-entry-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 1.4rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--border);
+}

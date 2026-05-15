@@ -1,0 +1,2221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ServiceDesk Pro — IT Help Desk System Documentation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #f1f5f9;
+      color: #0f172a;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .doc-wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 0 0 80px 0;
+      box-shadow: 0 0 40px rgba(0,0,0,0.08);
+    }
+
+    /* ─── Cover ─────────────────────────────────────────────── */
+    .cover {
+      background: linear-gradient(135deg, #1e3a5f 0%, #0f2744 100%);
+      color: #fff;
+      padding: 72px 60px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: rgba(245,158,11,0.12);
+    }
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -40px;
+      width: 240px; height: 240px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+    }
+    .cover-logo {
+      font-size: 56px;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .cover-title {
+      font-size: 38px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+    .cover-subtitle {
+      font-size: 18px;
+      color: #f59e0b;
+      font-weight: 600;
+      margin-bottom: 32px;
+    }
+    .cover-meta {
+      display: flex;
+      gap: 32px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+    }
+    .cover-meta span strong { color: #fff; font-weight: 600; }
+
+    /* ─── Table of Contents ─────────────────────────────────── */
+    .toc-section {
+      padding: 48px 60px;
+      border-bottom: 2px solid #f1f5f9;
+    }
+    .toc-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1e3a5f;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .toc-section h2::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(90deg, #f59e0b, transparent);
+      border-radius: 2px;
+    }
+    .toc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 40px;
+    }
+    .toc-grid a {
+      color: #1e3a5f;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.15s;
+    }
+    .toc-grid a:hover { background: #f0f7ff; }
+    .toc-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px; height: 22px;
+      background: #1e3a5f;
+      color: #fff;
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ─── Section wrapper ───────────────────────────────────── */
+    .doc-section {
+      padding: 56px 60px 20px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .doc-section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #f59e0b;
+      margin-bottom: 6px;
+    }
+    .section-title {
+      font-size: 26px;
+      font-weight: 700;
+      color: #1e3a5f;
+      margin-bottom: 10px;
+    }
+    .section-desc {
+      font-size: 14px;
+      color: #475569;
+      margin-bottom: 28px;
+      max-width: 680px;
+      line-height: 1.7;
+    }
+
+    /* ─── Mockup frame ──────────────────────────────────────── */
+    .mockup-frame {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05), 0 10px 30px rgba(0,0,0,0.12);
+      border: 1px solid #e2e8f0;
+      margin-bottom: 12px;
+      zoom: 0.82;
+      transform-origin: top left;
+    }
+    .browser-bar {
+      background: #e8ecf0;
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid #d1d9e0;
+    }
+    .browser-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+    }
+    .bd-red { background: #ff5f57; }
+    .bd-yellow { background: #ffbd2e; }
+    .bd-green { background: #28c840; }
+    .browser-url {
+      flex: 1;
+      background: #fff;
+      border-radius: 20px;
+      padding: 3px 14px;
+      font-size: 12px;
+      color: #64748b;
+      margin-left: 6px;
+      border: 1px solid #d1d9e0;
+    }
+
+    /* ─── Shared UI atoms ───────────────────────────────────── */
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .chip-open    { background: #dbeafe; color: #1d4ed8; }
+    .chip-inprog  { background: #fef3c7; color: #92400e; }
+    .chip-resolved{ background: #d1fae5; color: #065f46; }
+    .chip-rejected{ background: #fee2e2; color: #991b1b; }
+
+    .priority-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    .pri-low      { background: #f1f5f9; color: #475569; }
+    .pri-medium   { background: #dbeafe; color: #1d4ed8; }
+    .pri-high     { background: #ffedd5; color: #ea580c; }
+    .pri-critical { background: #fee2e2; color: #dc2626; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      white-space: nowrap;
+    }
+    .btn-navy   { background: #1e3a5f; color: #fff; }
+    .btn-amber  { background: #f59e0b; color: #fff; }
+    .btn-ghost  { background: #fff; color: #1e3a5f; border: 1.5px solid #cbd5e1; }
+    .btn-red    { background: #dc2626; color: #fff; }
+    .btn-sm     { padding: 5px 10px; font-size: 12px; }
+
+    /* ─── TopBar ────────────────────────────────────────────── */
+    .topbar {
+      background: #1e3a5f;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      height: 54px;
+      gap: 0;
+    }
+    .topbar-brand {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      margin-right: 32px;
+      white-space: nowrap;
+    }
+    .topbar-nav {
+      display: flex;
+      align-items: stretch;
+      height: 100%;
+      flex: 1;
+      gap: 0;
+    }
+    .topbar-link {
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .topbar-link.active {
+      color: #fff;
+      border-bottom-color: #f59e0b;
+    }
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto;
+    }
+    .avatar {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: #f59e0b;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .topbar-username {
+      font-size: 13px;
+      color: #fff;
+      font-weight: 500;
+    }
+    .topbar-role {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: rgba(245,158,11,0.25);
+      color: #fcd34d;
+      font-weight: 600;
+    }
+
+    /* ─── Page content wrapper ──────────────────────────────── */
+    .page-body {
+      background: #f8fafc;
+      padding: 28px 24px;
+      min-height: 520px;
+    }
+    .page-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+    .page-title { font-size: 22px; font-weight: 700; color: #0f172a; }
+    .page-sub   { font-size: 13px; color: #64748b; margin-top: 3px; }
+
+    /* ─── Stat cards ─────────────────────────────────────────── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .stat-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      border: 1px solid #e2e8f0;
+      text-align: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .stat-icon {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+    .stat-num {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: #64748b;
+      font-weight: 500;
+    }
+    .stat-blue   .stat-num { color: #3b82f6; }
+    .stat-red    .stat-num { color: #ef4444; }
+    .stat-amber  .stat-num { color: #f59e0b; }
+    .stat-green  .stat-num { color: #059669; }
+
+    /* ─── Card ───────────────────────────────────────────────── */
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+    .card-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: 15px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .card-body { padding: 16px 18px; }
+
+    /* ─── Data table ─────────────────────────────────────────── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .data-table th {
+      background: #f8fafc;
+      padding: 10px 12px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #64748b;
+      border-bottom: 2px solid #e2e8f0;
+    }
+    .data-table td {
+      padding: 11px 12px;
+      border-bottom: 1px solid #f1f5f9;
+      color: #0f172a;
+      vertical-align: middle;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: #fafbfd; }
+    .issue-id { font-weight: 700; color: #1e3a5f; font-size: 12px; }
+
+    /* ─── Bar chart ──────────────────────────────────────────── */
+    .bar-chart-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 12px;
+    }
+    .bar-label { width: 150px; color: #475569; flex-shrink: 0; text-align: right; font-size: 12px; }
+    .bar-track {
+      flex: 1;
+      height: 16px;
+      background: #f1f5f9;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #1e3a5f, #2d5a9e);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 6px;
+      font-size: 10px;
+      color: #fff;
+      font-weight: 600;
+    }
+    .bar-count { width: 20px; font-weight: 700; color: #1e3a5f; }
+
+    /* ─── Form elements ──────────────────────────────────────── */
+    .form-group { margin-bottom: 16px; }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 5px;
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1.5px solid #d1d9e0;
+      border-radius: 7px;
+      font-size: 13px;
+      color: #0f172a;
+      background: #fff;
+      font-family: inherit;
+      outline: none;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: #1e3a5f;
+    }
+    .form-textarea { min-height: 80px; resize: vertical; }
+    .form-select { cursor: pointer; }
+
+    /* ─── Priority pills row ─────────────────────────────────── */
+    .priority-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .priority-pill {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 2px solid #e2e8f0;
+      font-size: 13px;
+      font-weight: 600;
+      color: #475569;
+      cursor: pointer;
+    }
+    .priority-pill.selected-navy {
+      background: #1e3a5f;
+      color: #fff;
+      border-color: #1e3a5f;
+    }
+    .pill-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      border: 2px solid currentColor;
+    }
+    .pill-dot.filled { background: currentColor; }
+
+    /* ─── Info banner ────────────────────────────────────────── */
+    .info-banner {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #1e40af;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ─── SideSheet layout ───────────────────────────────────── */
+    .sidesheet-frame {
+      display: flex;
+      position: relative;
+      min-height: 560px;
+    }
+    .sidesheet-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.38);
+      z-index: 10;
+    }
+    .sidesheet-panel {
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: 380px;
+      background: #fff;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -4px 0 24px rgba(0,0,0,0.15);
+    }
+    .sidesheet-header {
+      background: #1e3a5f;
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .sidesheet-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .sidesheet-close {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .sidesheet-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 18px;
+    }
+    .sidesheet-footer {
+      padding: 14px 18px;
+      border-top: 1px solid #f1f5f9;
+      display: flex;
+      gap: 8px;
+    }
+    .detail-row {
+      display: flex;
+      gap: 0;
+      margin-bottom: 12px;
+      font-size: 13px;
+    }
+    .detail-key {
+      width: 110px;
+      flex-shrink: 0;
+      color: #64748b;
+      font-weight: 600;
+    }
+    .detail-val { color: #0f172a; }
+
+    /* ─── Timeline ───────────────────────────────────────────── */
+    .timeline { padding: 0; list-style: none; }
+    .timeline-item {
+      display: flex;
+      gap: 14px;
+      padding-bottom: 20px;
+      position: relative;
+    }
+    .timeline-item:not(:last-child)::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 20px;
+      bottom: 0;
+      width: 2px;
+      background: #e2e8f0;
+    }
+    .timeline-dot {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: #1e3a5f;
+      flex-shrink: 0;
+      margin-top: 3px;
+      box-shadow: 0 0 0 3px #dbeafe;
+    }
+    .timeline-content {}
+    .timeline-time { font-size: 11px; color: #64748b; margin-bottom: 4px; }
+    .timeline-text { font-size: 13px; color: #0f172a; }
+    .arrow-sep { margin: 0 4px; color: #94a3b8; font-size: 11px; }
+
+    /* ─── Login page ─────────────────────────────────────────── */
+    .login-bg {
+      background: #1e3a5f;
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 40px 20px;
+    }
+    .login-title-main {
+      font-size: 30px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+      text-align: center;
+    }
+    .login-subtitle {
+      font-size: 15px;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 28px;
+      text-align: center;
+    }
+    .login-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 28px 28px 24px;
+      width: 400px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .login-role-heading {
+      font-size: 14px;
+      font-weight: 700;
+      color: #374151;
+      margin-bottom: 14px;
+    }
+    .role-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .role-card {
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 14px 12px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .role-card.selected {
+      border-color: #1e3a5f;
+      background: #eff6ff;
+    }
+    .role-card-icon { font-size: 26px; margin-bottom: 6px; }
+    .role-card-title { font-size: 14px; font-weight: 700; color: #0f172a; margin-bottom: 2px; }
+    .role-card-desc  { font-size: 11px; color: #64748b; }
+    .login-divider {
+      border: none;
+      border-top: 1px solid #f1f5f9;
+      margin: 16px 0;
+    }
+
+    /* ─── Two-column layout ──────────────────────────────────── */
+    .two-col { display: grid; grid-template-columns: 1.6fr 1fr; gap: 16px; }
+
+    /* ─── Search panel ───────────────────────────────────────── */
+    .search-panel {
+      background: #fff;
+      border-radius: 10px;
+      padding: 18px;
+      border: 1px solid #e2e8f0;
+      margin-bottom: 18px;
+    }
+    .search-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr auto auto;
+      gap: 10px;
+      align-items: end;
+    }
+
+    /* ─── Reference tables ───────────────────────────────────── */
+    .ref-section {
+      padding: 48px 60px 20px;
+    }
+    .ref-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1e3a5f;
+      margin-bottom: 8px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #f1f5f9;
+    }
+    .ref-section p {
+      color: #475569;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .ref-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      margin-bottom: 32px;
+    }
+    .ref-table th {
+      background: #1e3a5f;
+      color: #fff;
+      padding: 11px 14px;
+      text-align: left;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .ref-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #f1f5f9;
+      color: #0f172a;
+      vertical-align: top;
+    }
+    .ref-table tr:nth-child(even) td { background: #fafbfd; }
+    .ref-table tr:last-child td { border-bottom: none; }
+    .method {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .method-get    { background: #d1fae5; color: #065f46; }
+    .method-post   { background: #dbeafe; color: #1d4ed8; }
+    .method-put    { background: #fef3c7; color: #92400e; }
+    .method-delete { background: #fee2e2; color: #991b1b; }
+    .code-inline {
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      background: #f1f5f9;
+      padding: 1px 6px;
+      border-radius: 4px;
+      color: #1e3a5f;
+    }
+    .tag-req  { display:inline-block; background:#d1fae5; color:#065f46; padding:1px 7px; border-radius:10px; font-size:11px; font-weight:600; }
+    .tag-opt  { display:inline-block; background:#f1f5f9; color:#475569; padding:1px 7px; border-radius:10px; font-size:11px; font-weight:600; }
+    .tag-yes  { display:inline-block; background:#fef3c7; color:#92400e; padding:1px 7px; border-radius:10px; font-size:11px; font-weight:600; }
+    .tag-no   { display:inline-block; background:#e0f2fe; color:#0369a1; padding:1px 7px; border-radius:10px; font-size:11px; font-weight:600; }
+    .perms-yes { color: #059669; font-weight: 700; text-align: center; }
+    .perms-no  { color: #dc2626; font-weight: 700; text-align: center; }
+
+    /* ─── Delete warning ─────────────────────────────────────── */
+    .delete-warning {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+      font-size: 13px;
+      color: #7c2d12;
+    }
+    .delete-warning .warn-icon { font-size: 36px; margin-bottom: 10px; }
+    .delete-warning p { line-height: 1.6; }
+    .delete-header .sidesheet-title { color: #fca5a5; }
+
+    /* ─── Footer ─────────────────────────────────────────────── */
+    .doc-footer {
+      background: #1e3a5f;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 24px;
+      font-size: 13px;
+    }
+    .doc-footer strong { color: #f59e0b; }
+  </style>
+</head>
+<body>
+
+<div class="doc-wrapper">
+
+  <!-- ═══════════════════════════════════════════════════ COVER -->
+  <div class="cover">
+    <span class="cover-logo">🎫</span>
+    <div class="cover-title">ServiceDesk Pro</div>
+    <div class="cover-subtitle">IT Help Desk System — Product Documentation</div>
+    <div class="cover-meta">
+      <span><strong>Version</strong> 1.0.0</span>
+      <span><strong>Date</strong> May 15, 2026</span>
+      <span><strong>Module</strong> AFDE_May26 — HMS Track</span>
+      <span><strong>Author</strong> Abhishek PR</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ TOC -->
+  <div class="toc-section">
+    <h2>Table of Contents</h2>
+    <div class="toc-grid">
+      <a href="#screen-login"><span class="toc-num">1</span> Login Page</a>
+      <a href="#screen-topbar"><span class="toc-num">2</span> TopBar Navigation</a>
+      <a href="#screen-dashboard"><span class="toc-num">3</span> Command Center (Dashboard)</a>
+      <a href="#screen-queue"><span class="toc-num">4</span> Issue Queue (Full List)</a>
+      <a href="#screen-raise"><span class="toc-num">5</span> Raise Request Form</a>
+      <a href="#screen-search"><span class="toc-num">6</span> Find Issues (Search)</a>
+      <a href="#screen-detail"><span class="toc-num">7</span> Issue Detail SideSheet</a>
+      <a href="#screen-editor"><span class="toc-num">8</span> Issue Editor SideSheet</a>
+      <a href="#screen-log"><span class="toc-num">9</span> Activity Log SideSheet</a>
+      <a href="#screen-delete"><span class="toc-num">10</span> Delete Confirmation SideSheet</a>
+      <a href="#ref-techstack"><span class="toc-num">11</span> Tech Stack</a>
+      <a href="#ref-api"><span class="toc-num">12</span> API Reference</a>
+      <a href="#ref-schema"><span class="toc-num">13</span> Database Schema</a>
+      <a href="#ref-roles"><span class="toc-num">14</span> Roles &amp; Permissions</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ SCREEN 1: LOGIN -->
+  <div class="doc-section" id="screen-login">
+    <div class="section-label">Screen 01</div>
+    <div class="section-title">Login Page</div>
+    <div class="section-desc">
+      The entry point for all users. A role-selection card lets users choose between Employee and IT Admin before proceeding. The minimal, branded design establishes the product identity and ensures the correct role context is set before any session begins.
+    </div>
+
+    <div class="mockup-frame">
+      <div class="browser-bar">
+        <span class="browser-dot bd-red"></span>
+        <span class="browser-dot bd-yellow"></span>
+        <span class="browser-dot bd-green"></span>
+        <span class="browser-url">http://localhost:3000/login</span>
+      </div>
+      <div class="login-bg">
+        <div class="login-title-main">🎫 ServiceDesk Pro</div>
+        <div class="login-subtitle">IT Support Portal</div>
+        <div class="login-card">
+          <div class="login-role-heading">Select your role</div>
+          <div class="role-cards">
+            <div class="role-card selected">
+              <div class="role-card-icon">👤</div>
+              <div class="role-card-title">Employee</div>
+              <div class="role-card-desc">Raise support requests</div>
+            </div>
+            <div class="role-card">
+              <div class="role-card-icon">🛡</div>
+              <div class="role-card-title">IT Admin</div>
+              <div class="role-card-desc">Manage and resolve tickets</div>
+            </div>
+          </div>
+          <hr class="login-divider" />
+          <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input class="form-input" type="text" placeholder="e.g. Ravi Kumar" style="cursor:default;" readonly />
+          </div>
+          <button class="btn btn-navy" style="width:100%; justify-content:center; padding:11px 16px; font-size:14px; margin-top:4px;">Continue →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ SCREEN 2: TOPBAR -->
+  <div class="doc-section" id="screen-topbar">
+    <div class="section-label">Screen 02</div>
+    <div class="section-title">TopBar Navigation</div>
+    <div class="section-desc">
+      The persistent navigation bar appears across all authenticated screens. It provides the brand identity, primary navigation tabs with amber active-state indicator, and the logged-in user's identity with their role badge. The active tab is highlighted with a white label and an amber bottom border.
+    </div>
+
+    <div class="mockup-frame">
+      <div class="browser-bar">
+        <span class="browser-dot bd-red"></span>
+        <span class="browser-dot bd-yellow"></span>
+        <span class="browser-dot bd-green"></span>
+        <span class="browser-url">http://localhost:3000/dashboard</span>
+      </div>
+      <div class="topbar">
+        <div class="topbar-brand">🎫 ServiceDesk Pro</div>
+        <nav class="topbar-nav">
+          <span class="topbar-link active">Command Center</span>
+          <span class="topbar-link">Issue Queue</span>
+          <span class="topbar-link">Raise Request</span>
+          <span class="topbar-link">Find Issues</span>
+        </nav>
+        <div class="topbar-right">
+          <div class="avatar">RK</div>
+          <span class="topbar-username">Ravi Kumar</span>
+          <span class="topbar-role">Employee</span>
+        </div>
+      </div>
+      <!-- Show all four active states as separate rows -->
+      <div style="background:#f8fafc; padding:18px 24px;">
+        <p style="font-size:12px; color:#64748b; margin-bottom:14px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px;">Navigation States — each tab shown active:</p>
+        <!-- Tab 2 active -->
+        <div class="topbar" style="border-radius:8px; margin-bottom:8px;">
+          <div class="topbar-brand">🎫 ServiceDesk Pro</div>
+          <nav class="topbar-nav">
+            <span class="topbar-link">Command Center</span>
+            <span class="topbar-link active">Issue Queue</span>
+            <span class="topbar-link">Raise Request</span>
+            <span class="topbar-link">Find Issues</span>
+          </nav>
+          <div class="topbar-right">
+            <div class="avatar" style="background:#059669;">SA</div>
+            <span class="topbar-username">Senior Admin</span>
+            <span class="topbar-role">IT Admin</span>
+          </div>
+        </div>
+        <!-- Tab 3 active -->
+        <div class="topbar" style="border-radius:8px; margin-bottom:8px;">
+          <div class="topbar-brand">🎫 ServiceDesk Pro</div>
+          <nav class="topbar-nav">
+            <span class="topbar-link">Command Center</span>
+            <span class="topbar-link">Issue Queue</span>
+            <span class="topbar-link active">Raise Request</span>
+            <span class="topbar-link">Find Issues</span>
+          </nav>
+          <div class="topbar-right">
+            <div class="avatar" style="background:#8b5cf6;">SN</div>
+            <span class="topbar-username">Sneha Nair</span>
+            <span class="topbar-role">Employee</span>
+          </div>
+        </div>
+        <!-- Tab 4 active -->
+        <div class="topbar" style="border-radius:8px;">
+          <div class="topbar-brand">🎫 ServiceDesk Pro</div>
+          <nav class="topbar-nav">
+            <span class="topbar-link">Command Center</span>
+            <span class="topbar-link">Issue Queue</span>
+            <span class="topbar-link">Raise Request</span>
+            <span class="topbar-link active">Find Issues</span>
+          </nav>
+          <div class="topbar-right">
+            <div class="avatar">RK</div>
+            <span class="topbar-username">Ravi Kumar</span>
+            <span class="topbar-role">Employee</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ SCREEN 3: DASHBOARD -->
+  <div class="doc-section" id="screen-dashboard">
+    <div class="section-label">Screen 03</div>
+    <div class="section-title">Command Center — Dashboard</div>
+    <div class="section-desc">
+      The Command Center gives IT Admins and Employees an at-a-glance operational view. Four KPI stat cards surface the ticket pipeline at a glance, while the Recent Issues table and Category Breakdown bar chart provide actionable detail without leaving the page.
+    </div>
+
+    <div class="mockup-frame">
+      <div class="browser-bar">
+        <span class="browser-dot bd-red"></span>
+        <span class="browser-dot bd-yellow"></span>
+        <span class="browser-dot bd-green"></span>
+        <span class="browser-url">http://localhost:3000/dashboard</span>
+      </div>
+      <!-- TopBar -->
+      <div class="topbar">
+        <div class="topbar-brand">🎫 ServiceDesk Pro</div>
+        <nav class="topbar-nav">
+          <span class="topbar-link active">Command Center</span>
+          <span class="topbar-link">Issue Queue</span>
+          <span class="topbar-link">Raise Request</span>
+          <span class="topbar-link">Find Issues</span>
+        </nav>
+        <div class="topbar-right">
+          <div class="avatar" style="background:#059669;">SA</div>
+          <span class="topbar-username">Senior Admin</span>
+          <span class="topbar-role">IT Admin</span>
+        </div>
+      </div>
+      <!-- Page Body -->
+      <div class="page-body">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Command Center</div>
+            <div class="page-sub">Real-time overview of all support issues</div>
+          </div>
+          <button class="btn btn-navy">＋ New Request</button>
+        </div>
+
+        <!-- Stat grid -->
+        <div class="stat-grid">
+          <div class="stat-card stat-blue">
+            <div class="stat-icon">📋</div>
+            <div class="stat-num">31</div>
+            <div class="stat-label">Total Issues</div>
+          </div>
+          <div class="stat-card stat-red">
+            <div class="stat-icon">❗</div>
+            <div class="stat-num">12</div>
+            <div class="stat-label">Open</div>
+          </div>
+          <div class="stat-card stat-amber">
+            <div class="stat-icon">🔄</div>
+            <div class="stat-num">8</div>
+            <div class="stat-label">In Progress</div>
+          </div>
+          <div class="stat-card stat-green">
+            <div class="stat-icon">✅</div>
+            <div class="stat-num">11</div>
+            <div class="stat-label">Resolved</div>
+          </div>
+        </div>
+
+        <!-- Two-column content -->
+        <div class="two-col">
+          <!-- Recent Issues -->
+          <div class="card">
+            <div class="card-header">Recent Issues</div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Employee</th>
+                  <th>Category</th>
+                  <th>Priority</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="issue-id">#8</td>
+                  <td>Ravi Kumar</td>
+                  <td>VPN Issue</td>
+                  <td><span class="priority-badge pri-high">● High</span></td>
+                  <td><span class="chip chip-open">Open</span></td>
+                </tr>
+                <tr>
+                  <td class="issue-id">#7</td>
+                  <td>Sneha Nair</td>
+                  <td>Password Reset</td>
+                  <td><span class="priority-badge pri-medium">● Medium</span></td>
+                  <td><span class="chip chip-inprog">In Progress</span></td>
+                </tr>
+                <tr>
+                  <td class="issue-id">#6</td>
+                  <td>Arjun Mehta</td>
+                  <td>Software Install</td>
+                  <td><span class="priority-badge pri-low">● Low</span></td>
+                  <td><span class="chip chip-resolved">Resolved</span></td>
+                </tr>
+                <tr>
+                  <td class="issue-id">#5</td>
+                  <td>Priya Sharma</td>
+                  <td>Laptop Issue</td>
+                  <td><span class="priority-badge pri-critical">● Critical</span></td>
+                  <td><span class="chip chip-open">Open</span></td>
+                </tr>
+                <tr>
+                  <td class="issue-id">#4</td>
+                  <td>Karan Bose</td>
+                  <td>VPN Issue</td>
+                  <td><span class="priority-badge pri-high">● High</span></td>
+                  <td><span class="chip chip-inprog">In Progress</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Category Breakdown -->
+          <div class="card">
+            <div class="card-header">Category Breakdown</div>
+            <div class="card-body">
+              <div class="bar-chart-row">
+                <div class="bar-label">VPN Issue</div>
+                <div class="bar-track"><div class="bar-fill" style="width:80%;">8</div></div>
+                <div class="bar-count">8</div>
+              </div>
+              <div class="bar-chart-row">
+                <div class="bar-label">Password Reset</div>
+                <div class="bar-track"><div class="bar-fill" style="width:60%;">6</div></div>
+                <div class="bar-count">6</div>
+              </div>
+              <div class="bar-chart-row">
+                <div class="bar-label">Software Install</div>
+                <div class="bar-track"><div class="bar-fill" style="width:50%;">5</div></div>
+                <div class="bar-count">5</div>
+              </div>
+              <div class="bar-chart-row">
+                <div class="bar-label">Laptop Issue</div>
+                <div class="bar-track"><div class="bar-fill" style="width:40%;">4</div></div>
+                <div class="bar-count">4</div>
+              </div>
+              <div class="bar-chart-row">
+                <div class="bar-label">Other</div>
+                <div class="bar-track"><div class="bar-fill" style="width:20%;">2</div></div>
+                <div class="bar-count">2</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ SCREEN 4: ISSUE QUEUE -->
+  <div class="doc-section" id="screen-queue">
+    <div class="section-label">Screen 04</div>
+    <div class="section-title">Issue Queue — Full Ticket List</div>
+    <div class="section-desc">
+      The Issue Queue presents all tickets in a sortable table. IT Admins see full action controls (View, Edit, Delete) on every row; Employees see only View. A contextual info banner reminds employees of their read-only access scope.
+    </div>
+
+    <div class="mockup-frame">
+      <div class="browser-bar">
+        <span class="browser-dot bd-red"></span>
+        <span class="browser-dot bd-yellow"></span>
+        <span class="browser-dot bd-green"></span>
+        <span class="browser-url">http://localhost:3000/tickets</span>
+      </div>
+      <div class="topbar">
+        <div class="topbar-brand">🎫 ServiceDesk Pro</div>
+        <nav class="topbar-nav">
+          <span class="topbar-link">Command Center</span>
+          <span class="topbar-link active">Issue Queue</span>
+          <span class="topbar-link">Raise Request</span>
+          <span class="topbar-link">Find Issues</span>
+        </nav>
+        <div class="topbar-right">
+          <div class="avatar">RK</div>
+          <span class="topbar-username">Ravi Kumar</span>
+          <span class="topbar-role">Employee</span>
+        </div>
+      </div>
+      <div class="page-body">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Issue Queue</div>
+            <div class="page-sub">All support tickets</div>
+          </div>
+          <button class="btn btn-navy">＋ Raise Request</button>
+        </div>
+
+        <div class="info-banner">
+          <span>ℹ️</span>
+          <span>You are logged in as <strong>Employee</strong>. Only IT Admins can modify tickets.</span>
+        </div>
+
+        <div class="card">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Employee</th>
+                <th>Department</th>
+                <th>Category</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Raised On</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="issue-id">#8</td>
+                <td>Ravi Kumar</td>
+                <td>Engineering</td>
+                <td>VPN Issue</td>
+                <td><span class="priority-badge pri-high">● High</span></td>
+                <td><span class="chip chip-open">Open</span></td>
+                <td style="color:#64748b; font-size:12px;">14 May 2025</td>
+                <td><button class="btn btn-ghost btn-sm">👁 View</button></td>
+              </tr>
+              <tr>
+                <td class="issue-id">#7</td>
+                <td>Sneha Nair</td>
+                <td>HR</td>
+                <td>Password Reset</td>
+                <td><span class="priority-badge pri-medium">● Medium</span></td>
+                <td><span class="chip chip-inprog">In Progress</span></td>
+                <td style="color:#64748b; font-size:12px;">13 May 2025</td>
+                <td style="display:flex; gap:4px;">
+                  <button class="btn btn-ghost btn-sm">👁 View</button>
+                  <button class="btn btn-navy btn-sm">✏️ Edit</button>
+                  <button class="btn btn-red btn-sm">🗑</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="issue-id">#6</td>
+                <td>Arjun Mehta</td>
+                <td>Finance</td>
+                <td>Software Install</td>
+                <td><span class="priority-badge pri-low">● Low</span></td>
+                <td><span class="chip chip-resolved">Resolved</span></td>
+                <td style="color:#64748b; font-size:12px;">12 May 2025</td>
+                <td style="display:flex; gap:4px;">
+                  <button class="btn btn-ghost btn-sm">👁 View</button>
+                  <button class="btn btn-navy btn-sm">✏️ Edit</button>
+                  <button class="btn btn-red btn-sm">🗑</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="issue-id">#5</td>
+                <td>Priya Sharma</td>
+                <td>Operations</td>
+                <td>Laptop Issue</td>
+                <td><span class="priority-badge pri-critical">● Critical</span></td>
+                <td><span class="chip chip-open">Open</span></td>
+                <td style="color:#64748b; font-size:12px;">11 May 2025</td>
+                <td><button class="btn btn-ghost btn-sm">👁 View</button></td>
+              </tr>
+              <tr>
+                <td class="issue-id">#4</td>
+                <td>Karan Bose</td>
+                <td>Sales</td>
+                <td>VPN Issue</td>
+                <td><span class="priority-badge pri-high">● High</span></td>
+                <td><span class="chip chip-inprog">In Progress</span></td>
+                <td style="color:#64748b; font-size:12px;">10 May 2025</td>
+                <td style="display:flex; gap:4px;">
+                  <button class="btn btn-ghost btn-sm">👁 View</button>
+                  <button class="btn btn-navy btn-sm">✏️ Edit</button>
+                  <button class="btn btn-red btn-sm">🗑</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="issue-id">#3</td>
+                <td>Meera Iyer</td>
+                <td>Legal</td>
+                <td>Email Access</td>
+                <td><span class="priority-badge pri-medium">● Medium</span></td>
+                <td><span class="chip chip-rejected">Rejected</span></td>
+                <td style="color:#64748b; font-size:12px;">09 May 2025</td>
+                <td style="display:flex; gap:4px;">
+                  <button class="btn btn-ghost btn-sm">👁 View</button>
+                  <button class="btn btn-navy btn-sm">✏️ Edit</button>
+                  <button class="btn btn-red btn-sm">🗑</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ SCREEN 5: RAISE REQUEST -->
+  <div class="doc-section" id="screen-raise">
+    <div class="section-label">Screen 05</div>
+    <div class="section-title">Raise a Request — New Ticket Form</div>
+    <div class="section-desc">
+      Employees use this form to submit a new support ticket. The Priority field uses a pill-style radio selector for tactile selection. All required fields are marked; submitting the form creates a new ticket in "Open" status and redirects to the Issue Queue.
+    </div>
+
+    <div class="mockup-frame">
+      <div class="browser-bar">
+        <span class="browser-dot bd-red"></span>
+        <span class="browser-dot bd-yellow"></span>
+        <span class="browser-dot bd-green"></span>
+        <span class="browser-url">http://localhost:3000/raise</span>
+      </div>
+      <div class="topbar">
+        <div class="topbar-brand">🎫 ServiceDesk Pro</div>
+        <nav class="topbar-nav">
+          <span class="topbar-link">Command Center</span>
+          <span class="topbar-link">Issue Queue</span>
+          <span class="topbar-link active">Raise Request</span>
+          <span class="topbar-link">Find Issues</span>
+        </nav>
+        <div class="topbar-right">
+          <div class="avatar" style="background:#8b5cf6;">SN</div>
+          <span class="topbar-username">Sneha Nair</span>
+          <span class="topbar-role">Employee</span>
+        </div>
+      </div>
+      <div class="page-body">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Raise a Request</div>
+            <div class="page-sub">Submit a new support ticket</div>
+          </div>
+        </div>
+
+        <div class="card" style="max-width:620px;">
+          <div class="card-header" style="background:#f8fafc;">📝 New Support Ticket</div>
+          <div class="card-body" style="padding:22px 24px;">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+              <div class="form-group">
+                <label class="form-label">Your Name <span style="color:#dc2626;">*</span></label>
+                <input class="form-input" type="text" placeholder="e.g. Sneha Nair" style="cursor:default;" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Department <span style="color:#dc2626;">*</span></label>
+                <input class="form-input" type="text" placeholder="e.g. HR" style="cursor:default;" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Issue Category <span style="color:#dc2626;">*</span></label>
+              <select class="form-select">
+                <option>VPN Issue</option>
+                <option>Password Reset</option>
+                <option>Software Installation</option>
+                <option>Laptop Issue</option>
+                <option>Email Access</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Priority</label>
+              <div class="priority-pills">
+                <div class="priority-pill">
+                  <span class="pill-dot"></span> Low
+                </div>
+                <div class="priority-pill selected-navy">
+                  <span class="pill-dot filled"></span> Medium
+                </div>
+                <div class="priority-pill">
+                  <span class="pill-dot"></span> High
+                </div>
+                <div class="priority-pill">
+                  <span class="pill-dot"></span> Critical
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Description <span style="color:#dc2626;">*</span></label>
+              <textarea class="form-textarea" placeholder="Describe your issue in detail. Include any error messages, steps to reproduce, and impact on your work..."></textarea>
+            </div>
+
+            <div style="display:flex; gap:10px; margin-top:8px;">
+              <button class="btn btn-navy" style="flex:1; justify-content:center;">Submit Request</button>
+              <button class="btn btn-ghost">Reset</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ SCREEN 6: FIND ISSUES -->
+  <div class="doc-section" id="screen-search">
+    <div class="section-label">Screen 06</div>
+    <div class="section-title">Find Issues — Search &amp; Filter</div>
+    <div class="section-desc">
+      The search panel supports keyword-based text search, combined with categorical and status filters. Results are displayed in the same table format as the Issue Queue, with the match count prominently shown. Clearing all filters restores the full list.
+    </div>
+
+    <div class="mockup-frame">
+      <div class="browser-bar">
+        <span class="browser-dot bd-red"></span>
+        <span class="browser-dot bd-yellow"></span>
+        <span class="browser-dot bd-green"></span>
+        <span class="browser-url">http://localhost:3000/search?q=VPN</span>
+      </div>
+      <div class="topbar">
+        <div class="topbar-brand">🎫 ServiceDesk Pro</div>
+        <nav class="topbar-nav">
+          <span class="topbar-link">Command Center</span>
+          <span class="topbar-link">Issue Queue</span>
+          <span class="topbar-link">Raise Request</span>
+          <span class="topbar-link active">Find Issues</span>
+        </nav>
+        <div class="topbar-right">
+          <div class="avatar">RK</div>
+          <span class="topbar-username">Ravi Kumar</span>
+          <span class="topbar-role">Employee</span>
+        </div>
+      </div>
+      <div class="page-body">
+        <div class="page-header">
+          <div>
+            <div class="page-title">Find Issues</div>
+            <div class="page-sub">Search across all support tickets</div>
+          </div>
+        </div>
+
+        <div class="search-panel">
+          <div class="search-row">
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label" style="font-size:12px;">Keyword</label>
+              <input class="form-input" type="text" value="VPN" style="cursor:default;" />
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label" style="font-size:12px;">Category</label>
+              <select class="form-select"><option>All Categories</option><option selected>VPN Issue</option></select>
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label" style="font-size:12px;">Status</label>
+              <select class="form-select"><option selected>All Statuses</option></select>
+            </div>
+            <div style="display:flex; gap:8px; align-items:flex-end; padding-bottom:1px;">
+              <button class="btn btn-navy">🔍 Search</button>
+              <button class="btn btn-ghost">✕ Clear</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="font-size:14px; font-weight:600; color:#1e3a5f; margin-bottom:12px;">
+          4 results for <span style="color:#f59e0b;">"VPN"</span>
+        </div>
+
+        <div class="card">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Employee</th>
+                <th>Department</th>
+                <th>Category</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Raised On</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="issue-id">#8</td>
+                <td>Ravi Kumar</td>
+                <td>Engineering</td>
+                <td><strong>VPN</strong> Issue</td>
+                <td><span class="priority-badge pri-high">● High</span></td>
+                <td><span class="chip chip-open">Open</span></td>
+                <td style="color:#64748b; font-size:12px;">14 May 2025</td>
+                <td><button class="btn btn-ghost btn-sm">👁 View</button></td>
+              </tr>
+              <tr>
+                <td class="issue-id">#4</td>
+                <td>Karan Bose</td>
+                <td>Sales</td>
+                <td><strong>VPN</strong> Issue</td>
+                <td><span class="priority-badge pri-high">● High</span></td>
+                <td><span class="chip chip-inprog">In Progress</span></td>
+                <td style="color:#64748b; font-size:12px;">10 May 2025</td>
+                <td><button class="btn btn-ghost btn-sm">👁 View</button></td>
+              </tr>
+              <tr>
+                <td class="issue-id">#2</td>
+                <td>Dev Anand</td>
+                <td>Marketing</td>
+                <td><strong>VPN</strong> Issue</td>
+                <td><span class="priority-badge pri-medium">● Medium</span></td>
+                <td><span class="chip chip-resolved">Resolved</span></td>
+                <td style="color:#64748b; font-size:12px;">07 May 2025</td>
+                <td><button class="btn btn-ghost btn-sm">👁 View</button></td>
+              </tr>
+              <tr>
+                <td class="issue-id">#1</td>
+                <td>Raj Patel</td>
+                <td>Engineering</td>
+                <td><strong>VPN</strong> Issue</td>
+                <td><span class="priority-badge pri-low">● Low</span></td>
+                <td><span class="chip chip-resolved">Resolved</span></td>
+                <td style="color:#64748b; font-size:12px;">05 May 2025</td>
+                <td><button class="btn btn-ghost btn-sm">👁 View</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ SCREEN 7: ISSUE DETAIL -->
+  <div class="doc-section" id="screen-detail">
+    <div class="section-label">Screen 07</div>
+    <div class="section-title">Issue Detail — View SideSheet</div>
+    <div class="section-desc">
+      Clicking "View" on any ticket opens a right-side drawer that presents all ticket metadata in a structured detail list. The overlay dims the Issue Queue behind it. Admins see Edit and View History footers; employees see only Close.
+    </div>
+
+    <div class="mockup-frame">
+      <div class="browser-bar">
+        <span class="browser-dot bd-red"></span>
+        <span class="browser-dot bd-yellow"></span>
+        <span class="browser-dot bd-green"></span>
+        <span class="browser-url">http://localhost:3000/tickets?view=8</span>
+      </div>
+      <div class="topbar">
+        <div class="topbar-brand">🎫 ServiceDesk Pro</div>
+        <nav class="topbar-nav">
+          <span class="topbar-link">Command Center</span>
+          <span class="topbar-link active">Issue Queue</span>
+          <span class="topbar-link">Raise Request</span>
+          <span class="topbar-link">Find Issues</span>
+        </nav>
+        <div class="topbar-right">
+          <div class="avatar" style="background:#059669;">SA</div>
+          <span class="topbar-username">Senior Admin</span>
+          <span class="topbar-role">IT Admin</span>
+        </div>
+      </div>
+
+      <!-- SideSheet container -->
+      <div class="sidesheet-frame">
+        <!-- Background page (dimmed) -->
+        <div style="flex:1; padding:24px; background:#f8fafc; filter:blur(1px);">
+          <div style="display:flex; justify-content:space-between; margin-bottom:18px;">
+            <div><div style="font-size:18px; font-weight:700;">Issue Queue</div></div>
+            <button class="btn btn-navy btn-sm">＋ Raise Request</button>
+          </div>
+          <div class="card">
+            <table class="data-table">
+              <thead><tr><th>#</th><th>Employee</th><th>Category</th><th>Priority</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td class="issue-id">#8</td><td>Ravi Kumar</td><td>VPN Issue</td><td><span class="priority-badge pri-high">● High</span></td><td><span class="chip chip-open">Open</span></td></tr>
+                <tr><td class="issue-id">#7</td><td>Sneha Nair</td><td>Password Reset</td><td><span class="priority-badge pri-medium">● Medium</span></td><td><span class="chip chip-inprog">In Progress</span></td></tr>
+                <tr><td class="issue-id">#6</td><td>Arjun Mehta</td><td>Software Install</td><td><span class="priority-badge pri-low">● Low</span></td><td><span class="chip chip-resolved">Resolved</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Overlay -->
+        <div class="sidesheet-overlay"></div>
+
+        <!-- SideSheet Panel -->
+        <div class="sidesheet-panel">
+          <div class="sidesheet-header">
+            <div>
+              <div class="sidesheet-title">Issue #8</div>
+              <div style="margin-top:4px;"><span class="chip chip-open">Open</span></div>
+            </div>
+            <div class="sidesheet-close">✕</div>
+          </div>
+          <div class="sidesheet-body">
+            <div class="detail-row">
+              <span class="detail-key">Employee</span>
+              <span class="detail-val">Ravi Kumar</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-key">Department</span>
+              <span class="detail-val">Engineering</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-key">Category</span>
+              <span class="detail-val">VPN Issue</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-key">Priority</span>
+              <span class="detail-val"><span class="priority-badge pri-high">● High</span></span>
+            </div>
+            <div style="border-top:1px solid #f1f5f9; margin:12px 0;"></div>
+            <div class="form-group" style="margin-bottom:10px;">
+              <div class="form-label" style="font-size:12px; color:#64748b; margin-bottom:4px;">Description</div>
+              <div style="font-size:13px; color:#0f172a; line-height:1.6; background:#f8fafc; padding:10px 12px; border-radius:7px; border:1px solid #f1f5f9;">
+                Cannot connect to company VPN since yesterday morning. Tried reinstalling the client and restarting. Getting error code 0x800704b3. Affecting my ability to access internal resources.
+              </div>
+            </div>
+            <div class="detail-row">
+              <span class="detail-key">Resolution</span>
+              <span class="detail-val" style="color:#94a3b8;">—</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-key">Raised</span>
+              <span class="detail-val" style="font-size:12px; color:#64748b;">14 May 2025, 09:42</span>
+            </div>
+          </div>
+          <div class="sidesheet-footer">
+            <button class="btn btn-navy btn-sm">✏️ Edit Ticket</button>
+            <button class="btn btn-ghost btn-sm">📋 View History</button>
+            <button class="btn btn-ghost btn-sm">✕ Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ SCREEN 8: EDITOR -->
+  <div class="doc-section" id="screen-editor">
+    <div class="section-label">Screen 08</div>
+    <div class="section-title">Issue Editor — Edit SideSheet</div>
+    <div class="section-desc">
+      IT Admins use the Edit SideSheet to update ticket Status, Priority, and add Resolution Notes. The "Changed By" field is required to ensure every modification is attributed and recorded in the audit trail. Changes trigger a new entry in the ticket's Activity Log.
+    </div>
+
+    <div class="mockup-frame">
+      <div class="browser-bar">
+        <span class="browser-dot bd-red"></span>
+        <span class="browser-dot bd-yellow"></span>
+        <span class="browser-dot bd-green"></span>
+        <span class="browser-url">http://localhost:3000/tickets?edit=8</span>
+      </div>
+      <div class="topbar">
+        <div class="topbar-brand">🎫 ServiceDesk Pro</div>
+        <nav class="topbar-nav">
+          <span class="topbar-link">Command Center</span>
+          <span class="topbar-link active">Issue Queue</span>
+          <span class="topbar-link">Raise Request</span>
+          <span class="topbar-link">Find Issues</span>
+        </nav>
+        <div class="topbar-right">
+          <div class="avatar" style="background:#059669;">SA</div>
+          <span class="topbar-username">Senior Admin</span>
+          <span class="topbar-role">IT Admin</span>
+        </div>
+      </div>
+
+      <div class="sidesheet-frame">
+        <div style="flex:1; padding:24px; background:#f8fafc; filter:blur(1px);">
+          <div class="card">
+            <table class="data-table">
+              <thead><tr><th>#</th><th>Employee</th><th>Category</th><th>Priority</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr style="background:#eff6ff;"><td class="issue-id">#8</td><td>Ravi Kumar</td><td>VPN Issue</td><td><span class="priority-badge pri-high">● High</span></td><td><span class="chip chip-open">Open</span></td></tr>
+                <tr><td class="issue-id">#7</td><td>Sneha Nair</td><td>Password Reset</td><td><span class="priority-badge pri-medium">● Medium</span></td><td><span class="chip chip-inprog">In Progress</span></td></tr>
+                <tr><td class="issue-id">#6</td><td>Arjun Mehta</td><td>Software Install</td><td><span class="priority-badge pri-low">● Low</span></td><td><span class="chip chip-resolved">Resolved</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="sidesheet-overlay"></div>
+        <div class="sidesheet-panel">
+          <div class="sidesheet-header">
+            <div class="sidesheet-title">Edit Ticket #8</div>
+            <div class="sidesheet-close">✕</div>
+          </div>
+          <div class="sidesheet-body">
+            <div style="background:#fef3c7; border:1px solid #f59e0b; border-radius:7px; padding:10px 12px; font-size:12px; color:#92400e; margin-bottom:16px;">
+              ⚠️ <strong>Editing Ticket #8</strong> — VPN Issue raised by Ravi Kumar
+            </div>
+            <div class="form-group">
+              <label class="form-label">Status</label>
+              <select class="form-select">
+                <option selected>Open</option>
+                <option>In Progress</option>
+                <option>Resolved</option>
+                <option>Rejected</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Priority</label>
+              <select class="form-select">
+                <option>Low</option>
+                <option>Medium</option>
+                <option selected>High</option>
+                <option>Critical</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Resolution Notes</label>
+              <textarea class="form-textarea" placeholder="Add resolution notes, steps taken, or reason for rejection..." style="min-height:90px;"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Changed By <span style="color:#dc2626;">*</span></label>
+              <input class="form-input" type="text" placeholder="Admin Name (required for audit trail)" />
+            </div>
+          </div>
+          <div class="sidesheet-footer">
+            <button class="btn btn-navy btn-sm">💾 Save Changes</button>
+            <button class="btn btn-ghost btn-sm">✕ Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ SCREEN 9: ACTIVITY LOG -->
+  <div class="doc-section" id="screen-log">
+    <div class="section-label">Screen 09</div>
+    <div class="section-title">Activity Log — Ticket History SideSheet</div>
+    <div class="section-desc">
+      The Activity Log provides a complete, chronological audit trail of every status change made to a ticket. Each timeline entry shows the timestamp, actor, and the before/after status transition using color-coded chips. This ensures full accountability and traceability.
+    </div>
+
+    <div class="mockup-frame">
+      <div class="browser-bar">
+        <span class="browser-dot bd-red"></span>
+        <span class="browser-dot bd-yellow"></span>
+        <span class="browser-dot bd-green"></span>
+        <span class="browser-url">http://localhost:3000/tickets?log=8</span>
+      </div>
+      <div class="topbar">
+        <div class="topbar-brand">🎫 ServiceDesk Pro</div>
+        <nav class="topbar-nav">
+          <span class="topbar-link">Command Center</span>
+          <span class="topbar-link active">Issue Queue</span>
+          <span class="topbar-link">Raise Request</span>
+          <span class="topbar-link">Find Issues</span>
+        </nav>
+        <div class="topbar-right">
+          <div class="avatar" style="background:#059669;">SA</div>
+          <span class="topbar-username">Senior Admin</span>
+          <span class="topbar-role">IT Admin</span>
+        </div>
+      </div>
+
+      <div class="sidesheet-frame">
+        <div style="flex:1; padding:24px; background:#f8fafc; filter:blur(1px);">
+          <div class="card">
+            <table class="data-table">
+              <thead><tr><th>#</th><th>Employee</th><th>Category</th><th>Priority</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td class="issue-id">#8</td><td>Ravi Kumar</td><td>VPN Issue</td><td><span class="priority-badge pri-high">● High</span></td><td><span class="chip chip-open">Open</span></td></tr>
+                <tr><td class="issue-id">#7</td><td>Sneha Nair</td><td>Password Reset</td><td><span class="priority-badge pri-medium">● Medium</span></td><td><span class="chip chip-inprog">In Progress</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="sidesheet-overlay"></div>
+        <div class="sidesheet-panel">
+          <div class="sidesheet-header">
+            <div>
+              <div class="sidesheet-title">Activity Log</div>
+              <div style="font-size:12px; color:rgba(255,255,255,0.6); margin-top:2px;">Ticket #8 — VPN Issue</div>
+            </div>
+            <div class="sidesheet-close">✕</div>
+          </div>
+          <div class="sidesheet-body">
+            <ul class="timeline">
+              <li class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                  <div class="timeline-time">📅 14 May 2025, 09:42</div>
+                  <div class="timeline-text">
+                    <strong>Created</strong> by Ravi Kumar
+                    <div style="margin-top:5px;">
+                      <span class="chip chip-open">Open</span>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="timeline-item">
+                <div class="timeline-dot" style="background:#f59e0b; box-shadow:0 0 0 3px #fef3c7;"></div>
+                <div class="timeline-content">
+                  <div class="timeline-time">📅 14 May 2025, 11:20</div>
+                  <div class="timeline-text">
+                    <strong>Updated</strong> by IT Admin
+                    <div style="margin-top:5px; display:flex; align-items:center; gap:4px; flex-wrap:wrap;">
+                      <span class="chip chip-open">Open</span>
+                      <span class="arrow-sep">→</span>
+                      <span class="chip chip-inprog">In Progress</span>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="timeline-item">
+                <div class="timeline-dot" style="background:#059669; box-shadow:0 0 0 3px #d1fae5;"></div>
+                <div class="timeline-content">
+                  <div class="timeline-time">📅 15 May 2025, 14:05</div>
+                  <div class="timeline-text">
+                    <strong>Resolved</strong> by Senior Admin
+                    <div style="margin-top:5px; display:flex; align-items:center; gap:4px; flex-wrap:wrap;">
+                      <span class="chip chip-inprog">In Progress</span>
+                      <span class="arrow-sep">→</span>
+                      <span class="chip chip-resolved">Resolved</span>
+                    </div>
+                    <div style="margin-top:6px; font-size:12px; color:#64748b; background:#f8fafc; padding:6px 8px; border-radius:5px; border-left:3px solid #059669;">
+                      VPN client was reinstalled with v4.6 and registry keys were cleared. Issue resolved.
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="sidesheet-footer">
+            <button class="btn btn-ghost btn-sm" style="width:100%; justify-content:center;">✕ Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ SCREEN 10: DELETE -->
+  <div class="doc-section" id="screen-delete">
+    <div class="section-label">Screen 10</div>
+    <div class="section-title">Delete Confirmation — Destructive Action SideSheet</div>
+    <div class="section-desc">
+      To prevent accidental data loss, deleting a ticket requires an explicit confirmation step in a dedicated SideSheet. The panel uses a red header and a warning message identifying the exact ticket and employee, reinforcing the severity of the irreversible action.
+    </div>
+
+    <div class="mockup-frame">
+      <div class="browser-bar">
+        <span class="browser-dot bd-red"></span>
+        <span class="browser-dot bd-yellow"></span>
+        <span class="browser-dot bd-green"></span>
+        <span class="browser-url">http://localhost:3000/tickets?delete=7</span>
+      </div>
+      <div class="topbar">
+        <div class="topbar-brand">🎫 ServiceDesk Pro</div>
+        <nav class="topbar-nav">
+          <span class="topbar-link">Command Center</span>
+          <span class="topbar-link active">Issue Queue</span>
+          <span class="topbar-link">Raise Request</span>
+          <span class="topbar-link">Find Issues</span>
+        </nav>
+        <div class="topbar-right">
+          <div class="avatar" style="background:#059669;">SA</div>
+          <span class="topbar-username">Senior Admin</span>
+          <span class="topbar-role">IT Admin</span>
+        </div>
+      </div>
+
+      <div class="sidesheet-frame">
+        <div style="flex:1; padding:24px; background:#f8fafc; filter:blur(1px);">
+          <div class="card">
+            <table class="data-table">
+              <thead><tr><th>#</th><th>Employee</th><th>Category</th><th>Priority</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td class="issue-id">#8</td><td>Ravi Kumar</td><td>VPN Issue</td><td><span class="priority-badge pri-high">● High</span></td><td><span class="chip chip-open">Open</span></td></tr>
+                <tr style="background:#fff5f5;"><td class="issue-id">#7</td><td>Sneha Nair</td><td>Password Reset</td><td><span class="priority-badge pri-medium">● Medium</span></td><td><span class="chip chip-inprog">In Progress</span></td></tr>
+                <tr><td class="issue-id">#6</td><td>Arjun Mehta</td><td>Software Install</td><td><span class="priority-badge pri-low">● Low</span></td><td><span class="chip chip-resolved">Resolved</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="sidesheet-overlay"></div>
+        <div class="sidesheet-panel" style="width:340px;">
+          <div class="sidesheet-header delete-header" style="background:#991b1b;">
+            <div class="sidesheet-title" style="color:#fca5a5;">🗑 Delete Ticket</div>
+            <div class="sidesheet-close">✕</div>
+          </div>
+          <div class="sidesheet-body" style="display:flex; flex-direction:column; justify-content:center;">
+            <div class="delete-warning">
+              <div class="warn-icon">⚠️</div>
+              <p>
+                You are about to <strong>permanently delete</strong><br />
+                <strong style="color:#dc2626;">Ticket #7 — Password Reset</strong><br />
+                raised by <strong>Sneha Nair</strong> (HR).<br /><br />
+                This action <strong>cannot be undone</strong> and all associated activity logs will also be removed.
+              </p>
+            </div>
+            <div style="margin-top:16px; padding:10px 12px; background:#f8fafc; border-radius:7px; font-size:12px; color:#64748b; border:1px dashed #e2e8f0;">
+              <strong>Ticket Details</strong><br />
+              Status: <span class="chip chip-inprog" style="font-size:11px;">In Progress</span>
+              &nbsp; Priority: <span class="priority-badge pri-medium" style="font-size:11px;">Medium</span>
+            </div>
+          </div>
+          <div class="sidesheet-footer">
+            <button class="btn btn-red btn-sm" style="flex:1; justify-content:center;">🗑 Yes, Delete</button>
+            <button class="btn btn-ghost btn-sm" style="flex:1; justify-content:center;">✕ Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ REFERENCE TABLES -->
+
+  <!-- Tech Stack -->
+  <div class="ref-section" id="ref-techstack">
+    <h2>Tech Stack</h2>
+    <p>ServiceDesk Pro is built as a single-page React application with a Node.js/Express backend and a PostgreSQL database. The stack was selected to balance developer velocity, type safety, and operational simplicity for an internal tooling context.</p>
+    <table class="ref-table">
+      <thead>
+        <tr>
+          <th>Layer</th>
+          <th>Technology</th>
+          <th>Version</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Frontend Framework</td>
+          <td>React</td>
+          <td>18.2</td>
+          <td>Component-based UI rendering with hooks for state management</td>
+        </tr>
+        <tr>
+          <td>Language</td>
+          <td>TypeScript</td>
+          <td>5.3</td>
+          <td>Static typing across frontend and backend for reliability</td>
+        </tr>
+        <tr>
+          <td>Styling</td>
+          <td>Tailwind CSS</td>
+          <td>3.4</td>
+          <td>Utility-first CSS for rapid UI development</td>
+        </tr>
+        <tr>
+          <td>Backend Framework</td>
+          <td>Node.js + Express</td>
+          <td>20 LTS / 4.18</td>
+          <td>RESTful API server handling business logic and data access</td>
+        </tr>
+        <tr>
+          <td>Database</td>
+          <td>PostgreSQL</td>
+          <td>16</td>
+          <td>Relational data store for tickets and activity logs</td>
+        </tr>
+        <tr>
+          <td>ORM</td>
+          <td>Prisma</td>
+          <td>5.8</td>
+          <td>Type-safe database queries and schema migrations</td>
+        </tr>
+        <tr>
+          <td>Authentication</td>
+          <td>JWT (jsonwebtoken)</td>
+          <td>9.0</td>
+          <td>Stateless session management with role claims</td>
+        </tr>
+        <tr>
+          <td>Build Tool</td>
+          <td>Vite</td>
+          <td>5.1</td>
+          <td>Fast HMR development server and production bundler</td>
+        </tr>
+        <tr>
+          <td>HTTP Client</td>
+          <td>Axios</td>
+          <td>1.6</td>
+          <td>Promise-based API requests from the React frontend</td>
+        </tr>
+        <tr>
+          <td>Testing</td>
+          <td>Vitest + Testing Library</td>
+          <td>1.3</td>
+          <td>Unit and integration testing for components and API routes</td>
+        </tr>
+        <tr>
+          <td>Deployment</td>
+          <td>Docker + Compose</td>
+          <td>25</td>
+          <td>Containerized deployment for consistent environments</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- API Reference -->
+  <div class="ref-section" id="ref-api">
+    <h2>API Reference</h2>
+    <p>All endpoints are prefixed with <span class="code-inline">/api/v1</span>. Authenticated endpoints require a Bearer JWT token in the <span class="code-inline">Authorization</span> header. Responses follow the format <span class="code-inline">{ success: boolean, data: T, message: string }</span>.</p>
+    <table class="ref-table">
+      <thead>
+        <tr>
+          <th>Method</th>
+          <th>Path</th>
+          <th>Auth Required</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="method method-post">POST</span></td>
+          <td><span class="code-inline">/auth/login</span></td>
+          <td><span class="tag-no">No</span></td>
+          <td>Authenticate a user by name and role. Returns a signed JWT containing <span class="code-inline">userId</span>, <span class="code-inline">name</span>, and <span class="code-inline">role</span> claims. Token expires in 8 hours.</td>
+        </tr>
+        <tr>
+          <td><span class="method method-get">GET</span></td>
+          <td><span class="code-inline">/tickets</span></td>
+          <td><span class="tag-yes">Yes</span></td>
+          <td>Retrieve all tickets. Supports query params: <span class="code-inline">q</span> (keyword), <span class="code-inline">category</span>, <span class="code-inline">status</span>, <span class="code-inline">priority</span>. Returns paginated list ordered by <span class="code-inline">created_at DESC</span>.</td>
+        </tr>
+        <tr>
+          <td><span class="method method-get">GET</span></td>
+          <td><span class="code-inline">/tickets/:id</span></td>
+          <td><span class="tag-yes">Yes</span></td>
+          <td>Retrieve a single ticket by its numeric ID, including all associated activity log entries ordered chronologically.</td>
+        </tr>
+        <tr>
+          <td><span class="method method-post">POST</span></td>
+          <td><span class="code-inline">/tickets</span></td>
+          <td><span class="tag-yes">Yes</span></td>
+          <td>Create a new support ticket. Required body fields: <span class="code-inline">employee_name</span>, <span class="code-inline">department</span>, <span class="code-inline">category</span>, <span class="code-inline">description</span>. Optional: <span class="code-inline">priority</span> (defaults to "Medium"). Automatically sets <span class="code-inline">status</span> to "Open".</td>
+        </tr>
+        <tr>
+          <td><span class="method method-put">PUT</span></td>
+          <td><span class="code-inline">/tickets/:id</span></td>
+          <td><span class="tag-yes">Yes — Admin only</span></td>
+          <td>Update an existing ticket's <span class="code-inline">status</span>, <span class="code-inline">priority</span>, and/or <span class="code-inline">resolution_notes</span>. Requires <span class="code-inline">changed_by</span> in the body. Automatically creates an activity log entry recording the before/after state.</td>
+        </tr>
+        <tr>
+          <td><span class="method method-delete">DELETE</span></td>
+          <td><span class="code-inline">/tickets/:id</span></td>
+          <td><span class="tag-yes">Yes — Admin only</span></td>
+          <td>Permanently delete a ticket and all its activity log entries (cascading delete). This action is irreversible. Returns <span class="code-inline">204 No Content</span> on success.</td>
+        </tr>
+        <tr>
+          <td><span class="method method-get">GET</span></td>
+          <td><span class="code-inline">/tickets/:id/activities</span></td>
+          <td><span class="tag-yes">Yes</span></td>
+          <td>Retrieve the full activity log for a specific ticket, ordered by <span class="code-inline">changed_at ASC</span>. Each entry includes the actor name, previous status, new status, and ISO timestamp.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Database Schema -->
+  <div class="ref-section" id="ref-schema">
+    <h2>Database Schema</h2>
+    <p>The application uses two primary tables. The <span class="code-inline">tickets</span> table holds the canonical ticket state; the <span class="code-inline">ticket_activities</span> table provides an append-only log of all mutations, enabling full audit capability.</p>
+
+    <div style="font-size:15px; font-weight:700; color:#1e3a5f; margin-bottom:12px; margin-top:8px;">Table: <span class="code-inline">tickets</span></div>
+    <table class="ref-table">
+      <thead>
+        <tr>
+          <th>Column</th>
+          <th>Type</th>
+          <th>Constraints</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="code-inline">id</span></td>
+          <td>SERIAL</td>
+          <td><span class="tag-req">PRIMARY KEY</span></td>
+          <td>Auto-incrementing unique ticket identifier</td>
+        </tr>
+        <tr>
+          <td><span class="code-inline">employee_name</span></td>
+          <td>VARCHAR(100)</td>
+          <td><span class="tag-req">NOT NULL</span></td>
+          <td>Full name of the employee who raised the ticket</td>
+        </tr>
+        <tr>
+          <td><span class="code-inline">department</span></td>
+          <td>VARCHAR(100)</td>
+          <td><span class="tag-req">NOT NULL</span></td>
+          <td>Department of the reporting employee</td>
+        </tr>
+        <tr>
+          <td><span class="code-inline">category</span></td>
+          <td>VARCHAR(100)</td>
+          <td><span class="tag-req">NOT NULL</span></td>
+          <td>Issue type: VPN Issue, Password Reset, Software Installation, Laptop Issue, Email Access, Other</td>
+        </tr>
+        <tr>
+          <td><span class="code-inline">priority</span></td>
+          <td>VARCHAR(20)</td>
+          <td><span class="tag-req">NOT NULL</span> DEFAULT 'Medium'</td>
+          <td>Ticket urgency: Low, Medium, High, Critical</td>
+        </tr>
+        <tr>
+          <td><span class="code-inline">status</span></td>
+          <td>VARCHAR(20)</td>
+          <td><span class="tag-req">NOT NULL</span> DEFAULT 'Open'</td>
+          <td>Current lifecycle state: Open, In Progress, Resolved, Rejected</td>
+        </tr>
+        <tr>
+          <td><span class="code-inline">description</span></td>
+          <td>TEXT</td>
+          <td><span class="tag-req">NOT NULL</span></td>
+          <td>Full description of the issue as entered by the employee</td>
+        </tr>
+        <tr>
+          <td><span class="code-inline">resolution_notes</span></td>
+          <td>TEXT</td>
+          <td><span class="tag-opt">NULLABLE</span></td>
+          <td>Admin-entered notes explaining how the issue was resolved or why it was rejected</td>
+        </tr>
+        <tr>
+          <td><span class="code-inline">created_at</span></td>
+          <td>TIMESTAMPTZ</td>
+          <td>DEFAULT NOW()</td>
+          <td>UTC timestamp of ticket creation</td>
+        </tr>
+        <tr>
+          <td><span class="code-inline">updated_at</span></td>
+          <td>TIMESTAMPTZ</td>
+          <td>DEFAULT NOW()</td>
+          <td>UTC timestamp of last modification; auto-updated via trigger</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="font-size:15px; font-weight:700; color:#1e3a5f; margin-bottom:12px; margin-top:24px;">Table: <span class="code-inline">ticket_activities</span></div>
+    <table class="ref-table">
+      <thead>
+        <tr>
+          <th>Column</th>
+          <th>Type</th>
+          <th>Constraints</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="code-inline">id</span></td>
+          <td>SERIAL</td>
+          <td><span class="tag-req">PRIMARY KEY</span></td>
+          <td>Auto-incrementing log entry identifier</td>
+        </tr>
+        <tr>
+          <td><span class="code-inline">ticket_id</span></td>
+          <td>INTEGER</td>
+          <td><span class="tag-req">FK → tickets.id</span> ON DELETE CASCADE</td>
+          <td>Reference to the parent ticket; cascades on deletion</td>
+        </tr>
+        <tr>
+          <td><span class="code-inline">changed_by</span></td>
+          <td>VARCHAR(100)</td>
+          <td><span class="tag-req">NOT NULL</span></td>
+          <td>Name of the admin or actor who performed the change</td>
+        </tr>
+        <tr>
+          <td><span class="code-inline">prev_status</span></td>
+          <td>VARCHAR(20)</td>
+          <td><span class="tag-opt">NULLABLE</span></td>
+          <td>Status before this change; NULL for the initial creation entry</td>
+        </tr>
+        <tr>
+          <td><span class="code-inline">new_status</span></td>
+          <td>VARCHAR(20)</td>
+          <td><span class="tag-req">NOT NULL</span></td>
+          <td>Status after this change</td>
+        </tr>
+        <tr>
+          <td><span class="code-inline">prev_priority</span></td>
+          <td>VARCHAR(20)</td>
+          <td><span class="tag-opt">NULLABLE</span></td>
+          <td>Priority before this change; NULL if priority was not modified</td>
+        </tr>
+        <tr>
+          <td><span class="code-inline">new_priority</span></td>
+          <td>VARCHAR(20)</td>
+          <td><span class="tag-opt">NULLABLE</span></td>
+          <td>Priority after this change; NULL if priority was not modified</td>
+        </tr>
+        <tr>
+          <td><span class="code-inline">notes</span></td>
+          <td>TEXT</td>
+          <td><span class="tag-opt">NULLABLE</span></td>
+          <td>Optional free-text note captured at the time of the change</td>
+        </tr>
+        <tr>
+          <td><span class="code-inline">changed_at</span></td>
+          <td>TIMESTAMPTZ</td>
+          <td>DEFAULT NOW()</td>
+          <td>UTC timestamp of when the change was recorded</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Roles & Permissions -->
+  <div class="ref-section" id="ref-roles">
+    <h2>Roles &amp; Permissions</h2>
+    <p>ServiceDesk Pro enforces role-based access control at both the API layer and UI layer. There are two roles: <strong>Employee</strong> (self-service, read-oriented) and <strong>IT Admin</strong> (full ticket lifecycle management). Role is embedded in the JWT and validated on every protected endpoint.</p>
+    <table class="ref-table">
+      <thead>
+        <tr>
+          <th>Action</th>
+          <th>Endpoint</th>
+          <th style="text-align:center;">Employee</th>
+          <th style="text-align:center;">IT Admin</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Login / Get Token</td>
+          <td><span class="code-inline">POST /auth/login</span></td>
+          <td class="perms-yes">✓</td>
+          <td class="perms-yes">✓</td>
+          <td>Both roles authenticate via the same endpoint with role selection</td>
+        </tr>
+        <tr>
+          <td>View all tickets</td>
+          <td><span class="code-inline">GET /tickets</span></td>
+          <td class="perms-yes">✓</td>
+          <td class="perms-yes">✓</td>
+          <td>All authenticated users can browse the full ticket list</td>
+        </tr>
+        <tr>
+          <td>View ticket detail</td>
+          <td><span class="code-inline">GET /tickets/:id</span></td>
+          <td class="perms-yes">✓</td>
+          <td class="perms-yes">✓</td>
+          <td>All authenticated users can view a specific ticket and its metadata</td>
+        </tr>
+        <tr>
+          <td>Raise new ticket</td>
+          <td><span class="code-inline">POST /tickets</span></td>
+          <td class="perms-yes">✓</td>
+          <td class="perms-yes">✓</td>
+          <td>Any authenticated user can create a support request</td>
+        </tr>
+        <tr>
+          <td>Update ticket status / priority</td>
+          <td><span class="code-inline">PUT /tickets/:id</span></td>
+          <td class="perms-no">✗</td>
+          <td class="perms-yes">✓</td>
+          <td>Employees receive 403 Forbidden; change triggers an activity log entry</td>
+        </tr>
+        <tr>
+          <td>Delete ticket</td>
+          <td><span class="code-inline">DELETE /tickets/:id</span></td>
+          <td class="perms-no">✗</td>
+          <td class="perms-yes">✓</td>
+          <td>Permanently removes ticket and all activity logs; irreversible</td>
+        </tr>
+        <tr>
+          <td>View activity log</td>
+          <td><span class="code-inline">GET /tickets/:id/activities</span></td>
+          <td class="perms-yes">✓</td>
+          <td class="perms-yes">✓</td>
+          <td>Full audit trail is visible to all authenticated users for transparency</td>
+        </tr>
+        <tr>
+          <td>Search &amp; filter tickets</td>
+          <td><span class="code-inline">GET /tickets?q=&amp;category=&amp;status=</span></td>
+          <td class="perms-yes">✓</td>
+          <td class="perms-yes">✓</td>
+          <td>Query parameter filtering is available to all authenticated users</td>
+        </tr>
+        <tr>
+          <td>View Edit / Delete UI controls</td>
+          <td>Frontend only</td>
+          <td class="perms-no">✗</td>
+          <td class="perms-yes">✓</td>
+          <td>Edit and Delete buttons are conditionally rendered based on the JWT role claim</td>
+        </tr>
+        <tr>
+          <td>See employee info banner</td>
+          <td>Frontend only</td>
+          <td class="perms-yes">✓</td>
+          <td class="perms-no">✗</td>
+          <td>The read-only access reminder banner is shown only to Employee role users</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Footer -->
+  <div class="doc-footer">
+    <strong>ServiceDesk Pro v1.0.0</strong> — IT Help Desk System &nbsp;·&nbsp;
+    AFDE May 2026 &nbsp;·&nbsp;
+    Abhishek PR &lt;abhishek.pr@prodapt.com&gt; &nbsp;·&nbsp;
+    Generated May 15, 2026
+  </div>
+
+</div><!-- end .doc-wrapper -->
+
+</body>
+</html>
